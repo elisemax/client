@@ -6,6 +6,7 @@ import pill from '../resource/presc.svg';
 import devIcon from '../resource/devIcon.svg';
 import notif from '../resource/notif.svg'
 import done from '../resource/done.svg'
+import graph from '../resource/graph.png'
 import { useHttp } from '../hooks/http.hook';
 import {useState, useEffect, useReducer } from 'react';
 import { reducerBut } from '../store/reducer';
@@ -318,12 +319,26 @@ const Content = (props:any) => {
             </div>
         </>)
     }
+    const renderContentReports = () =>{
+        return(<div>
+            <div className='p-5 flex flex-col'>
+                <img className='' src={graph} alt="" />
+                <button
+                    type="button"
+                    className="mt-8 items-center rounded-md border border-transparent bg-orange-500 px-3 py-2 text-sm font-Bold leading-4 text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2 text-center"
+                >
+                    SEND REPORT TO MY DOCTOR
+                </button>
+            </div>
+        </div>)
+    }
     const elementMeds = dataPrescription.map((item: any) => { return renderContentMedication(item) })
     const elementsConsultation = dataConsulations.map((item:any) => renderContentConsultaion(item));
     const elementsLaboratory = dataLaboratory.map((item:any) => renderContentLaboratory(item));
     const elementsDevices = dataDevices.map((item:any) => renderContentDevices(item));
     const elementInsulin = renderContentInsulin()
     const elementToday = renderContentToday()
+    const elementReports = renderContentReports()
     const renderContent = (id:number) => {
         console.log(id)
         if (id === 1) {
@@ -350,7 +365,10 @@ const Content = (props:any) => {
             </div>)
         }
         else if (id === 6) {
-            return
+            return(<div>
+                <h2 className="pl-6 pt-10 text-lg text-amber-800 uppercase font-medium">Glucose</h2>
+                {elementReports}
+            </div>)
         }
         else if (id === 7) {
             return

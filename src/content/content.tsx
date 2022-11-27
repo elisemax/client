@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import infl from '../resource/infl.svg';
 import bottle from '../resource/medBottle.svg';
@@ -6,6 +7,7 @@ import devIcon from '../resource/devIcon.svg';
 import { useHttp } from '../hooks/http.hook';
 import {useState, useEffect, useReducer } from 'react';
 import { reducerBut } from '../store/reducer';
+import { PlusIcon as PlusIconMini } from '@heroicons/react/20/solid'
 
 const Content = (props:any) => {
     const { id } = props
@@ -14,7 +16,8 @@ const Content = (props:any) => {
     const [dataLaboratory, setDataLaboratory] = useState([]);
     const [dataPrescription, setDataPrescription] = useState([]);
     const [state, dispatch] = useReducer(reducerBut, {id: 0, name: ''});
-    const dataDevices = ['DEXCOM G6', 'Smart Insulin Pen','Insulin pump']; 
+    const dataDevices = ['DEXCOM G6', 'Smart Insulin Pen','Insulin pump'];
+    const [devButton,setDevButton] = useState(false) 
     console.log(state.id)  
    useEffect(() => {
         if (id===1) {
@@ -181,18 +184,24 @@ const Content = (props:any) => {
         </div>)
     }
     const renderContentDevices = (data: any) => {
-        let resStyle = `mr-5 text-right font-bold text-xs text-red-500`;
-        return (<div className="pt-3 px-5">
-            <div className="bg-green-100 rounded">
-                <div className="max-w-7xl py-1 sm:py-24 sm:px-6 lg:px-8 rounded">
-                    <div className='flex'>
-                        <img className='ml-3' src={devIcon} alt="" />
-                        <h2 className="py-1 text-xs ml-2 font-bold tracking-tight text-green-600">{data}</h2>
+        console.log(devButton)
+        if (devButton) {
+            return (
+                <div className="pt-3 px-5">
+                    <div className="bg-green-100 rounded">
+                        <div className="max-w-7xl py-1 sm:py-24 sm:px-6 lg:px-8 rounded">
+                            <div className='flex justify-between'>
+                                <div><img className='ml-3' src={devIcon} alt="icon" />
+                                    <h2 className="py-1 text-xs ml-2 font-bold tracking-tight text-green-600">{data}</h2></div>
+                                <div><button onClick={() => { setDevButton(!devButton) }} className='rounded-full border border-green-600 border-transparent p-2 text-white shadow-lg bg-green-100 mr-3'>
+                                    <PlusIconMini className="h-4 w-4 text-green-600" aria-hidden="true" /></button></div>
+                            </div>
+                        </div>
                     </div>
                     <div className="mt-1 border-t border-gray-500/10 pt-1">
                         <dl className="grid grid-cols-2">
                             <div>
-                                <dt className="text-xs ml-3 font-medium leading-5 text-gray-400">Installed on a date:</dt>
+                                <dt className="tnext-xs ml-3 font-medium leading-5 text-gray-400">Installed on a date:</dt>
                             </div>
                             <div>
                                 <dd className="mr-5 text-right font-bold text-xs text-stone-500">21/11/2022</dd>
@@ -208,8 +217,22 @@ const Content = (props:any) => {
                         </dl>
                     </div>
                 </div>
-            </div>
-        </div>)
+            )
+        }else if(devButton===false){
+            return (
+                <div className="pt-3 px-5">
+                    <div className="bg-green-100 rounded">
+                        <div className="max-w-7xl py-1 sm:py-24 sm:px-6 lg:px-8 rounded">
+                            <div className='flex justify-between'>
+                                <div><img className='ml-3' src={devIcon} alt="icon" />
+                                    <h2 className="py-1 text-xs ml-2 font-bold tracking-tight text-green-600">{data}</h2></div>
+                                <div><button onClick={() => { setDevButton(!devButton) }} className='rounded-full border border-green-600 border-transparent p-2 text-white shadow-lg bg-green-100 mr-3'>
+                                    <PlusIconMini className="h-4 w-4 text-green-600" aria-hidden="true" /></button></div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>)
+        }
     }
     const elementMeds = dataPrescription.map((item: any) => { return renderContentMedication(item) })
     const elementsConsultation = dataConsulations.map((item:any) => renderContentConsultaion(item));

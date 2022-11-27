@@ -67,7 +67,7 @@ const Content = (props:any) => {
                                     <dt className="text-xs ml-3 font-medium leading-5 text-gray-400">Last checked:</dt>
                                 </div>
                                 <div>
-                                    <dd className="mr-5 text-right font-bold text-xs text-orange-400">{data.start ? data.start : undefined}</dd>
+                                    <dd className="mr-5 text-right font-bold text-xs text-orange-400">{data.start ? data.start.slice(0, 10) : undefined}</dd>
                                 </div>
                             </dl>
                         </div>
@@ -121,7 +121,7 @@ const Content = (props:any) => {
                                 <dt className="text-xs ml-3 font-medium leading-5 text-gray-400">Date of last test:</dt>
                             </div>
                             <div>
-                                <dd className="mr-5 text-right font-bold text-xs text-orange-400">{data.time ? data.time : undefined}</dd>
+                                <dd className="mr-5 text-right font-bold text-xs text-orange-400">{data.time ? data.time.slice(0, 10) : undefined}</dd>
                             </div>
                         </dl>
                         <dl className="grid grid-cols-2">
@@ -177,7 +177,7 @@ const Content = (props:any) => {
                                 <dt className="text-xs ml-3 font-medium leading-5 text-gray-400">Date of prescription:</dt>
                             </div>
                             <div>
-                                <dd className="mr-5 text-right font-bold text-xs text-stone-500">{data.time? data.time : null} mg/dL</dd>
+                                <dd className="mr-5 text-right font-bold text-xs text-stone-500">{data.time? data.time.slice(0,10) : null}</dd>
                             </div>
                         </dl>
                     </div>

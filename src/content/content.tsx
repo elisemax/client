@@ -53,7 +53,6 @@ const Content = (props:any) => {
        }
         }, [id]);
     const renderContentConsultaion = (data:any) => {
-       
             return (<div className="pt-3 px-5">
                 <div className="bg-green-100 rounded">
                     <div className="max-w-7xl py-1 sm:py-24 sm:px-6 lg:px-8 rounded">
@@ -236,7 +235,7 @@ const Content = (props:any) => {
                     </div>)
         }
     }
-    const renderContentInsulin = (data: any) => {
+    const renderContentInsulin = () => {
         return (<div className="pt-3 px-5">
             <div className="bg-green-100 rounded">
                 <div className="max-w-7xl py-1 sm:py-24 sm:px-6 lg:px-8 rounded">
@@ -247,21 +246,35 @@ const Content = (props:any) => {
                     <div className="mt-1 border-t border-gray-500/10 pt-1">
                         <dl className="grid grid-cols-2">
                             <div>
-                                <dt className="text-xs ml-3 font-medium leading-5 text-gray-400">Last checked:</dt>
+                                <dt className="text-xs ml-3 font-medium leading-5 text-gray-400">Long insulint:</dt>
                             </div>
                             <div>
-                                <dd className="mr-5 text-right font-bold text-xs text-orange-400">{data.start ? data.start : undefined}</dd>
+                                <dd className="mr-5 text-right font-bold text-xs text-amber-700">___ UN</dd>
+                            </div>
+                        </dl>
+                        <dl className="grid grid-cols-2">
+                            <div>
+                                <dt className="text-xs ml-3 font-medium leading-5 text-gray-400">Short insulint:</dt>
+                            </div>
+                            <div>
+                                <dd className="mr-5 text-right font-bold text-xs text-amber-700">___ UN</dd>
                             </div>
                         </dl>
                     </div>
                 </div>
             </div>
+            <div className='pt-3 text-xs ml-3 font-medium leading-5 text-stone-500'>
+                <b>Short Acting Insulins</b> are used prior to meals and have a quicker onset of action (from approximately 5 min to an hour), peak at 1-4 hours and last from 4-8 hours. These are usually injected 3-4 times per day by the patient.
+            </div>
+            <div className='pt-3 text-xs ml-3 font-medium leading-5 text-stone-500'><b>Long Acting Insulins</b> peak at approximately 1 ½ to 2 hours and their effects last throughout the day from 12-24 hours. These are usually injected 1-2 times per day.</div>
+
         </div>)
     }
     const elementMeds = dataPrescription.map((item: any) => { return renderContentMedication(item) })
     const elementsConsultation = dataConsulations.map((item:any) => renderContentConsultaion(item));
     const elementsLaboratory = dataLaboratory.map((item:any) => renderContentLaboratory(item));
     const elementsDevices = dataDevices.map((item:any) => renderContentDevices(item));
+    const elementInsulin = renderContentInsulin()
     const renderContent = (id:number) => {
         if (id === 1) {
         return (<div>
@@ -270,7 +283,7 @@ const Content = (props:any) => {
             <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">Laboratory</h2>
                 {elementsLaboratory}
         </div>)} else if (id === 2) {
-            return}
+            return(<div>{elementInsulin}</div>)}
         else if (id === 3) {
             return(<div>
                 <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">Prescription</h2>

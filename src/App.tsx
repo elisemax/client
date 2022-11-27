@@ -59,7 +59,7 @@ function App() {
     )
   }
   const buttonsCreateBottom = (props: any) => {
-    const { src, srcWhite, name, id } = props
+    const { src, name, id } = props
     console.log(state.id)
     if (isClick && state.id===id) {
       return (
@@ -71,7 +71,7 @@ function App() {
           }}
         >
           <img className="w-6 h-6" src={src} alt="dev" />
-        </button><div className="mt-1 font-bold text-xs text-center text-violet-700">{name}</div></>
+        </button><div className="mt-1 font-bold text-xs text-center text-gray-400">{name}</div></>
       )
     }else{
       return (

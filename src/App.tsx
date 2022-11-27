@@ -15,7 +15,6 @@ function App() {
   const {imagesBottom} = useResourceBottom()
   const buttonsCreate = (props: any) => {
     const { src, srcWhite, name, id } = props
-    console.log(state.id)
     //const [isClick, setIsClick] = useState(false)
     //const [state, dispatch] = useReducer(reducerBut, { id: 0, name: '' })
     const renderButton = () => {
@@ -60,27 +59,29 @@ function App() {
   }
   const buttonsCreateBottom = (props: any) => {
     const { src, name, id } = props
-    console.log(state.id)
-    if (isClick && state.id===id) {
+    if (state.id === id) {
+      console.log(state.id)
       return (
-        <><button
+        <><div><button
           type="button"
-          className="inline-flex items-center border border-transparent p-4 "
+          className="inline-flex items-center p-4 "
           onClick={() => {
             setIsClick(!isClick);
+            dispatch({ type: name, payload: { id: id, name: name } })
           }}
         >
           <img className="w-6 h-6" src={src} alt="dev" />
-        </button><div className="mt-1 font-bold text-xs text-center text-gray-400">{name}</div></>
+        </button><div className="mt-1 font-bold text-xs text-center text-gray-400">{name}</div></div></>
       )
     }else{
       return (
         <>
         <div><button
           type="button"
-          className="inline-flex items-center border border-transparent"
+          className="inline-flex items-center"
           onClick={() => {
             setIsClick(!isClick);
+            dispatch({ type: name, payload: { id: id, name: name } })
           }}
         >
           <img className="w-6 h-6" src={src} alt="dev" />

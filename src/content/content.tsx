@@ -4,6 +4,8 @@ import infl from '../resource/infl.svg';
 import bottle from '../resource/medBottle.svg';
 import pill from '../resource/presc.svg';
 import devIcon from '../resource/devIcon.svg';
+import notif from '../resource/notif.svg'
+import done from '../resource/done.svg'
 import { useHttp } from '../hooks/http.hook';
 import {useState, useEffect, useReducer } from 'react';
 import { reducerBut } from '../store/reducer';
@@ -185,7 +187,6 @@ const Content = (props:any) => {
         </div>)
     }
     const renderContentDevices = (data: any) => {
-        console.log(devButton)
         if (devButton) {
             return (
                 <div className="pt-3 px-5">
@@ -267,15 +268,64 @@ const Content = (props:any) => {
                 <b>Short Acting Insulins</b> are used prior to meals and have a quicker onset of action (from approximately 5 min to an hour), peak at 1-4 hours and last from 4-8 hours. These are usually injected 3-4 times per day by the patient.
             </div>
             <div className='pt-3 text-xs ml-3 font-medium leading-5 text-stone-500'><b>Long Acting Insulins</b> peak at approximately 1 ½ to 2 hours and their effects last throughout the day from 12-24 hours. These are usually injected 1-2 times per day.</div>
-
         </div>)
+    }
+    const renderContentToday = () => {
+        return (<><div className="pt-3 px-5">
+            <div className="bg-green-100 rounded">
+                <div className="max-w-7xl py-1 sm:py-24 sm:px-6 lg:px-8 rounded">
+                    <div className='flex flex-col'>
+                        <h2 className="py-1 text-xs ml-2 font-bold tracking-tight text-green-600">Your last glucose check-up:</h2>
+                        <div className='flex'>
+                            <div className='pl-2 text-lg font-medium leading-5 text-orange-500'>5.5</div>
+                            <div className='text-xs ml-1 font-medium leading-5 text-stone-500'>mmol/L</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div className="pt-3 px-5">
+            <div className="bg-green-100 rounded">
+                    <div className="max-w-7xl py-1 sm:py-24 sm:px-6 lg:px-8 rounded">
+                        <div className='flex flex-col'>
+                            <h2 className="py-1 text-xs ml-2 font-bold tracking-tight text-green-600">Your next doctor visit:</h2>
+                            <div className='text-xs ml-2 font-medium leading-5 text-stone-500'>12/12/2022</div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+            <div className="pt-3 px-5">
+                <div className="bg-green-100 rounded">
+                    <div className="max-w-7xl py-1 sm:py-24 sm:px-6 lg:px-8 rounded">
+                        <div className='flex'>
+                            <img className='ml-3' src={notif} alt="" />
+                            <h2 className="py-1 text-xs ml-2 font-bold tracking-tight text-rose-700">Don’t forget to take your medications</h2>
+                        </div>
+                        <div className="mt-1 border-t border-gray-500/10 pt-1">
+                            <dl className="flex">
+                                <img className='ml-3' src={pill} alt="" />
+                                <dt className="text-xs ml-3 font-bold leading-5 text-green-600 mr-2">Hydrochlorothiazide 12.5 MG<br />amLODIPine 5 MG<br />Olmesartan medoxomil 20 MG Oral Tablet</dt>
+                            </dl>
+                            <dl className="flex justify-end mt-8">
+                                <div>
+                                    <dt className="text-xs ml-3 font-bold leading-5 text-green-700 mr-2">Mark as done</dt>
+                                </div>
+                                <img className='mr-4' src={done} alt="" />
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>)
     }
     const elementMeds = dataPrescription.map((item: any) => { return renderContentMedication(item) })
     const elementsConsultation = dataConsulations.map((item:any) => renderContentConsultaion(item));
     const elementsLaboratory = dataLaboratory.map((item:any) => renderContentLaboratory(item));
     const elementsDevices = dataDevices.map((item:any) => renderContentDevices(item));
     const elementInsulin = renderContentInsulin()
+    const elementToday = renderContentToday()
     const renderContent = (id:number) => {
+        console.log(id)
         if (id === 1) {
         return (<div>
             <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">Consultation</h2>
@@ -293,6 +343,18 @@ const Content = (props:any) => {
             return(<div>
                 {elementsDevices}
             </div>)}
+        else if(id===5){
+            return(<div>
+                <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">How do you feel today?</h2>
+                {elementToday}
+            </div>)
+        }
+        else if (id === 6) {
+            return
+        }
+        else if (id === 7) {
+            return
+        }
     }
     return (
         <>
@@ -301,3 +363,5 @@ const Content = (props:any) => {
     )
 }
 export default Content;
+
+

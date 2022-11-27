@@ -199,24 +199,24 @@ const Content = (props:any) => {
                                     <PlusIconMini className="h-4 w-4 text-green-600" aria-hidden="true" /></button></div>
                             </div>
                         </div>
-                    </div>
-                    <div className="mt-1 border-t border-gray-500/10 pt-1">
-                        <dl className="grid grid-cols-2">
-                            <div>
-                                <dt className="tnext-xs ml-3 font-medium leading-5 text-gray-400">Installed on a date:</dt>
-                            </div>
-                            <div>
-                                <dd className="mr-5 text-right font-bold text-xs text-stone-500">21/11/2022</dd>
-                            </div>
-                        </dl>
-                        <dl className="grid grid-cols-2">
-                            <div>
-                                <dt className="text-xs ml-3 font-medium leading-5 text-gray-400">Remaining days:</dt>
-                            </div>
-                            <div>
-                                <dd className="mr-5 text-right font-bold text-xs text-green-500">14</dd>
-                            </div>
-                        </dl>
+                        <div className="mt-1 border-t border-gray-500/10 pt-1">
+                            <dl className="grid grid-cols-2">
+                                <div>
+                                    <dt className="tnext-xs ml-3 font-medium leading-5 text-gray-400">Installed on a date:</dt>
+                                </div>
+                                <div>
+                                    <dd className="mr-5 text-right font-bold text-xs text-stone-500">21/11/2022</dd>
+                                </div>
+                            </dl>
+                            <dl className="grid grid-cols-2">
+                                <div>
+                                    <dt className="text-xs ml-3 font-medium leading-5 text-gray-400">Remaining days:</dt>
+                                </div>
+                                <div>
+                                    <dd className="mr-5 text-right font-bold text-xs text-green-500">14</dd>
+                                </div>
+                            </dl>
+                        </div>
                     </div>
                 </div>
             )
@@ -235,6 +235,28 @@ const Content = (props:any) => {
                     </div>
                     </div>)
         }
+    }
+    const renderContentInsulin = (data: any) => {
+        return (<div className="pt-3 px-5">
+            <div className="bg-green-100 rounded">
+                <div className="max-w-7xl py-1 sm:py-24 sm:px-6 lg:px-8 rounded">
+                    <div className='flex'>
+                        <img className='ml-3' src={infl} alt="" />
+                        <h2 className="py-1 text-xs ml-2 font-bold tracking-tight text-green-600">Doctor exam</h2>
+                    </div>
+                    <div className="mt-1 border-t border-gray-500/10 pt-1">
+                        <dl className="grid grid-cols-2">
+                            <div>
+                                <dt className="text-xs ml-3 font-medium leading-5 text-gray-400">Last checked:</dt>
+                            </div>
+                            <div>
+                                <dd className="mr-5 text-right font-bold text-xs text-orange-400">{data.start ? data.start : undefined}</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>)
     }
     const elementMeds = dataPrescription.map((item: any) => { return renderContentMedication(item) })
     const elementsConsultation = dataConsulations.map((item:any) => renderContentConsultaion(item));

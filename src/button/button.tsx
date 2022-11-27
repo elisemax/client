@@ -1,10 +1,11 @@
-import { useState } from "react"
-
+import { useState, useReducer } from "react"
+import { reducerBut } from "../store/reducer"
 const ButtonRounded = (props:any) =>{
     const {img:imgInt} = props
-    const {src, srcWhite,name} = imgInt
+    const {src, srcWhite,name,id} = imgInt
     let {status} = imgInt
     const [isClick, setIsClick] = useState(false)
+    const [state, dispatch] = useReducer(reducerBut, {id: 0, name: ''})
     const renderButton = () =>{
         if(isClick || status === 'active'){
             status = 'inactive'
@@ -12,8 +13,9 @@ const ButtonRounded = (props:any) =>{
                 <div>
                     <button
                         type="button"
-                        className="inline-flex items-center rounded-full border border-transparent p-4 text-white shadow-lg bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                        onClick={() => { setIsClick(!isClick) }}
+                        className="inline-flex items-center rounded-full border border-transparent p-4 text-white shadow-lg bg-orange-500 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                        onClick={() => { setIsClick(!isClick)
+                            dispatch({type: name, payload: {id: id, name: name}})}}
                     >
                         <img className="w-6 h-6" src={srcWhite} alt="dev" />
                     </button>
@@ -27,7 +29,8 @@ const ButtonRounded = (props:any) =>{
                     <button
                         type="button"
                         className="inline-flex items-center rounded-full border border-transparent p-4 text-white shadow-lg bg-white focus:outline-none focus:ring-2 focus:ring-offset-2"
-                        onClick={() => { setIsClick(!isClick) }}
+                        onClick={() => { setIsClick(!isClick)
+                            dispatch({type: '', payload: {id: 0, name: ''}})}}
                     >
                         <img className="w-6 h-6" src={src} alt="dev" />
                     </button>

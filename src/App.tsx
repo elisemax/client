@@ -6,19 +6,20 @@ import icon from './resource/User-icon.png';
 import Content from './content/content';
 import { useReducer, useState } from 'react';
 import { reducerBut } from './store/reducer';
+import { useResourceBottom } from './hooks/useResourceBottom';
 function App() {
   
   const { images } = useResource()
   const [isClick, setIsClick] = useState(false)
   const [state, dispatch] = useReducer(reducerBut, { id: 0, name: '' })
-
+  const {imagesBottom} = useResourceBottom()
   const buttonsCreate = (props: any) => {
     const { src, srcWhite, name, id } = props
     console.log(state.id)
     //const [isClick, setIsClick] = useState(false)
     //const [state, dispatch] = useReducer(reducerBut, { id: 0, name: '' })
     const renderButton = () => {
-      if (isClick && state.id===id) {
+      if (state.id===id) {
         return (
           <div>
             <button
@@ -57,6 +58,37 @@ function App() {
       renderButton()
     )
   }
+  const buttonsCreateBottom = (props: any) => {
+    const { src, srcWhite, name, id } = props
+    console.log(state.id)
+    if (isClick && state.id===id) {
+      return (
+        <><button
+          type="button"
+          className="inline-flex items-center border border-transparent p-4 "
+          onClick={() => {
+            setIsClick(!isClick);
+          }}
+        >
+          <img className="w-6 h-6" src={src} alt="dev" />
+        </button><div className="mt-1 font-bold text-xs text-center text-violet-700">{name}</div></>
+      )
+    }else{
+      return (
+        <>
+        <div><button
+          type="button"
+          className="inline-flex items-center border border-transparent"
+          onClick={() => {
+            setIsClick(!isClick);
+          }}
+        >
+          <img className="w-6 h-6" src={src} alt="dev" />
+          </button><div className="font-bold text-xs text-center text-gray-400">{name}</div></div></>
+      )
+    }
+  }
+
   //const buttons = buttonsCreate(images)
   return (
     <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 ">
@@ -81,6 +113,24 @@ function App() {
         </section>
         <section>
           {<Content/> ? <Content id={state.id}/> : <div>loading</div>}
+        </section>
+        <section>
+          <div className='bg-gray-100
+             text-white text-center
+             border-t-2 border-gray-300
+             fixed
+             inset-x-0
+             bottom-0
+             pt-2'>
+            <div className='flex content-center justify-around flex-row'>
+              {
+                imagesBottom.map((img)=>(
+                  <>
+                  {buttonsCreateBottom(img)}
+                  </>
+                ))}
+            </div>
+            </div>
         </section>
       </div>
     </div>

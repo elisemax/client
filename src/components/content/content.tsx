@@ -1,31 +1,32 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable jsx-a11y/no-redundant-roles */
-import infl from '../resource/infl.svg';
-import bottle from '../resource/medBottle.svg';
-import pill from '../resource/presc.svg';
-import devIcon from '../resource/devIcon.svg';
-import notif from '../resource/notif.svg'
-import done from '../resource/done.svg'
-import graph from '../resource/graph.png'
-import { useHttp } from '../hooks/http.hook';
-import {useState, useEffect, useReducer } from 'react';
-import { reducerBut } from '../store/reducer';
+import infl from '../../resource/infl.svg';
+import bottle from '../../resource/medBottle.svg';
+import pill from '../../resource/presc.svg';
+import devIcon from '../../resource/devIcon.svg';
+import notif from '../../resource/notif.svg'
+import done from '../../resource/done.svg'
+import graph from '../../resource/graph.png'
+import { useHttp } from '../../hooks/http.hook';
+import { useState, useEffect} from 'react';
 import { PlusIcon as PlusIconMini } from '@heroicons/react/20/solid'
+import { useTypeSelector } from '../../hooks/useTypeSelector';
+const Content = (props: any) => {
+    const { content , loading} = useTypeSelector( state => state.content);
+    console.log(content, loading)
 
-const Content = (props:any) => {
     const { id } = props
     const { request } = useHttp();
     const [dataConsulations, setDataConsultation] = useState([]);
     const [dataLaboratory, setDataLaboratory] = useState([]);
     const [dataPrescription, setDataPrescription] = useState([]);
-    const [state, dispatch] = useReducer(reducerBut, {id: 0, name: ''});
-    const dataDevices = ['DEXCOM G6', 'Smart Insulin Pen','Insulin pump'];
-    const [devButton,setDevButton] = useState(false) 
-   // const buttonSelected = (id:number)=>{
-   //     setDevButton(id)
-   // }  
-   useEffect(() => {
-        if (id===1) {
+    const dataDevices = ['DEXCOM G6', 'Smart Insulin Pen', 'Insulin pump'];
+    const [devButton, setDevButton] = useState(false)
+    // const buttonSelected = (id:number)=>{
+    //     setDevButton(id)
+    // }  
+    useEffect(() => {
+        if (id === 1) {
             request('http://34.118.48.240:8080/patient/encounters/1', 'GET', null)
                 .then((data) => {
                     setDataConsultation(data);
@@ -35,7 +36,7 @@ const Content = (props:any) => {
                     setDataLaboratory(data);
                 });
         }
-        if (id===2) {
+        if (id === 2) {
             request('http://34.118.48.240:8080/patient/encounters/1', 'GET', null)
                 .then((data) => {
                     setDataConsultation(data);
@@ -45,38 +46,38 @@ const Content = (props:any) => {
                     setDataLaboratory(data);
                 });
         }
-       if (id === 3) {
-           request('http://34.118.48.240:8080/patient/meds/1', 'GET', null)
-               .then((data) => {
-                   setDataPrescription(data);
-               });
-       }
-       if (id === 4) {
+        if (id === 3) {
+            request('http://34.118.48.240:8080/patient/meds/1', 'GET', null)
+                .then((data) => {
+                    setDataPrescription(data);
+                });
+        }
+        if (id === 4) {
 
-       }
-        }, [id]);
-    const renderContentConsultaion = (data:any) => {
-            return (<div className="pt-3 px-5">
-                <div className="bg-green-100 rounded">
-                    <div className="max-w-7xl py-1 sm:py-24 sm:px-6 lg:px-8 rounded">
-                        <div className='flex'>
-                            <img className='ml-3' src={infl} alt="" />
-                            <h2 className="py-1 text-xs ml-2 font-bold tracking-tight text-green-600">Doctor exam</h2>
-                        </div>
-                        <div className="mt-1 border-t border-gray-500/10 pt-1">
-                            <dl className="grid grid-cols-2">
-                                <div>
-                                    <dt className="text-xs ml-3 font-medium leading-5 text-gray-400">Last checked:</dt>
-                                </div>
-                                <div>
-                                    <dd className="mr-5 text-right font-bold text-xs text-orange-400">{data.start ? data.start.slice(0, 10) : undefined}</dd>
-                                </div>
-                            </dl>
-                        </div>
+        }
+    }, [id]);
+    const renderContentConsultaion = (data: any) => {
+        return (<div className="pt-3 px-5">
+            <div className="bg-green-100 rounded">
+                <div className="max-w-7xl py-1 sm:py-24 sm:px-6 lg:px-8 rounded">
+                    <div className='flex'>
+                        <img className='ml-3' src={infl} alt="" />
+                        <h2 className="py-1 text-xs ml-2 font-bold tracking-tight text-green-600">Doctor exam</h2>
+                    </div>
+                    <div className="mt-1 border-t border-gray-500/10 pt-1">
+                        <dl className="grid grid-cols-2">
+                            <div>
+                                <dt className="text-xs ml-3 font-medium leading-5 text-gray-400">Last checked:</dt>
+                            </div>
+                            <div>
+                                <dd className="mr-5 text-right font-bold text-xs text-orange-400">{data.start ? data.start.slice(0, 10) : undefined}</dd>
+                            </div>
+                        </dl>
                     </div>
                 </div>
-            </div>)
-        
+            </div>
+        </div>)
+
 
     }
     const renderContentLaboratory = (data: any) => {
@@ -93,7 +94,7 @@ const Content = (props:any) => {
         if (finalResult) {
             resStyle = `mr-5 text-right font-bold text-xs text-red-500`;
             medTest = '0/1'
-        }else{
+        } else {
             resStyle = `mr-5 text-right font-bold text-xs text-green-400`;
             medTest = '1/1'
         }
@@ -101,7 +102,7 @@ const Content = (props:any) => {
         //if (nowDate.getFullYear()-1 > oldDate) {
         //    finalResult = true
         //}
-      
+
         return (<div className="pt-3 px-5">
             <div className="bg-green-100 rounded">
                 <div className="max-w-7xl py-1 sm:py-24 sm:px-6 lg:px-8 rounded">
@@ -138,7 +139,7 @@ const Content = (props:any) => {
                 </div>
             </div>
         </div>)
-      
+
     }
     const renderContentMedication = (data: any) => {
         let resStyle = `mr-5 text-right font-bold text-xs text-red-500`;
@@ -179,7 +180,7 @@ const Content = (props:any) => {
                                 <dt className="text-xs ml-3 font-medium leading-5 text-gray-400">Date of prescription:</dt>
                             </div>
                             <div>
-                                <dd className="mr-5 text-right font-bold text-xs text-stone-500">{data.time? data.time.slice(0,10) : null}</dd>
+                                <dd className="mr-5 text-right font-bold text-xs text-stone-500">{data.time ? data.time.slice(0, 10) : null}</dd>
                             </div>
                         </dl>
                     </div>
@@ -221,7 +222,7 @@ const Content = (props:any) => {
                     </div>
                 </div>
             )
-        }else if(devButton===false){
+        } else if (devButton === false) {
             return (
                 <div className="pt-3 px-5">
                     <div className="bg-green-100 rounded">
@@ -234,7 +235,7 @@ const Content = (props:any) => {
                             </div>
                         </div>
                     </div>
-                    </div>)
+                </div>)
         }
     }
     const renderContentInsulin = () => {
@@ -285,16 +286,16 @@ const Content = (props:any) => {
                 </div>
             </div>
         </div>
-        <div className="pt-3 px-5">
-            <div className="bg-green-100 rounded">
+            <div className="pt-3 px-5">
+                <div className="bg-green-100 rounded">
                     <div className="max-w-7xl py-1 sm:py-24 sm:px-6 lg:px-8 rounded">
                         <div className='flex flex-col'>
                             <h2 className="py-1 text-xs ml-2 font-bold tracking-tight text-green-600">Your next doctor visit:</h2>
                             <div className='text-xs ml-2 font-medium leading-5 text-stone-500'>12/12/2022</div>
                         </div>
                     </div>
+                </div>
             </div>
-        </div>
             <div className="pt-3 px-5">
                 <div className="bg-green-100 rounded">
                     <div className="max-w-7xl py-1 sm:py-24 sm:px-6 lg:px-8 rounded">
@@ -319,8 +320,8 @@ const Content = (props:any) => {
             </div>
         </>)
     }
-    const renderContentReports = () =>{
-        return(<div>
+    const renderContentReports = () => {
+        return (<div>
             <div className='p-5 flex flex-col'>
                 <img className='' src={graph} alt="" />
                 <button
@@ -333,39 +334,43 @@ const Content = (props:any) => {
         </div>)
     }
     const elementMeds = dataPrescription.map((item: any) => { return renderContentMedication(item) })
-    const elementsConsultation = dataConsulations.map((item:any) => renderContentConsultaion(item));
-    const elementsLaboratory = dataLaboratory.map((item:any) => renderContentLaboratory(item));
-    const elementsDevices = dataDevices.map((item:any) => renderContentDevices(item));
+    const elementsConsultation = dataConsulations.map((item: any) => renderContentConsultaion(item));
+    const elementsLaboratory = dataLaboratory.map((item: any) => renderContentLaboratory(item));
+    const elementsDevices = dataDevices.map((item: any) => renderContentDevices(item));
     const elementInsulin = renderContentInsulin()
     const elementToday = renderContentToday()
     const elementReports = renderContentReports()
-    const renderContent = (id:number) => {
+    const renderContent = (id: number) => {
         console.log(id)
         if (id === 1) {
-        return (<div>
-            <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">Consultation</h2>
+            return (<div>
+                <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">Consultation</h2>
                 {elementsConsultation}
-            <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">Laboratory</h2>
+                <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">Laboratory</h2>
                 {elementsLaboratory}
-        </div>)} else if (id === 2) {
-            return(<div>{elementInsulin}</div>)}
+            </div>)
+        } else if (id === 2) {
+            return (<div>{elementInsulin}</div>)
+        }
         else if (id === 3) {
-            return(<div>
+            return (<div>
                 <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">Prescription</h2>
                 {elementMeds}
-            </div>)}
+            </div>)
+        }
         else if (id === 4) {
-            return(<div>
+            return (<div>
                 {elementsDevices}
-            </div>)}
-        else if(id===5){
-            return(<div>
+            </div>)
+        }
+        else if (id === 5) {
+            return (<div>
                 <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">How do you feel today?</h2>
                 {elementToday}
             </div>)
         }
         else if (id === 6) {
-            return(<div>
+            return (<div>
                 <h2 className="pl-6 pt-10 text-lg text-amber-800 uppercase font-medium">Glucose</h2>
                 {elementReports}
             </div>)

@@ -12,19 +12,15 @@ import { useState, useEffect} from 'react';
 import { PlusIcon as PlusIconMini } from '@heroicons/react/20/solid'
 import { useTypeSelector } from '../../hooks/useTypeSelector';
 const Content = (props: any) => {
-    const { content , loading} = useTypeSelector( state => state.content);
-    console.log(content, loading)
-
-    const { id } = props
+    
+    const { id } = props;
     const { request } = useHttp();
     const [dataConsulations, setDataConsultation] = useState([]);
     const [dataLaboratory, setDataLaboratory] = useState([]);
     const [dataPrescription, setDataPrescription] = useState([]);
     const dataDevices = ['DEXCOM G6', 'Smart Insulin Pen', 'Insulin pump'];
-    const [devButton, setDevButton] = useState(false)
-    // const buttonSelected = (id:number)=>{
-    //     setDevButton(id)
-    // }  
+    const [devButton, setDevButton] = useState(false);
+
     useEffect(() => {
         if (id === 1) {
             request('http://34.118.48.240:8080/patient/encounters/1', 'GET', null)

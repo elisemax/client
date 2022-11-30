@@ -8,9 +8,9 @@ const initialState: ContentState = {
 }
 export const fetchContent = createAsyncThunk<ContentState>(
     'content/fetchContent',
-    async () => {
+    async (filter) => {
         const { request } = useHttp();
-        const data = await request('http://34.118.48.240:8080/patient/encounters/1', 'GET', null)
+        const data = await request(`http://34.118.48.240:8080/patient/${filter}/1`, 'GET', null)
         return data;
         
     }
@@ -28,14 +28,11 @@ const contentSlice = createSlice({
         builder.addDefaultCase((state) => { state.loading = false; })
     }
 })
-//        fetchContent: (state: ContentState) => { state.loading=true },
+
 const { actions, reducer } = contentSlice;
+
 export default reducer;
+
 //export const {
 
 //} = actions;
-
-    // return {images:[{id:1, name:'Doctors', src:doctors, srcWhite:doctorsWhite,status:'inactive'},
-    //                 {id:2, name:'Insulin', src:insulin, srcWhite:insulinWhite,status:'inactive'},
-    //                 {id:3, name:'Meds', src:medications, srcWhite:medicationsWhite,status:'inactive'},
-    //                 {id:4, name:'Devices', src:devices, srcWhite:devicesWhite,status:'inactive'}]}

@@ -14,12 +14,12 @@ import { filterState } from '../../types/filter';
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: filterState = {
-    filter:[  { id:'Today', src:today, srcActive:today, status:'active'},
+    filter:[  { id:'Today', src:today, srcActive:today, status:'active', },
               { id:'Reports', src:reports, srcActive:reports, status:'inactive'},
                 { id:'Chat', src:chat, srcActive:chat, status:'inactive'},
-                { id:'Doctors', src:doctors, srcActive:doctorsActive, status:'inactive'},
+                { id:'Doctors', src:doctors, srcActive:doctorsActive, status:'inactive', endpoint:['encounters','tests']},
                 { id:'Insulin', src:insulin, srcActive:insulinActive, status:'inactive'},
-                { id:'Meds', src:medications, srcActive:medicationsActive, status:'inactive'},
+                { id:'Meds', src:medications, srcActive:medicationsActive, status:'inactive',endpoint:['meds']},
                 { id:'Devices', src:devices, srcActive:devicesActive, status:'inactive'}]
 }
 const filterSlice = createSlice({
@@ -28,6 +28,7 @@ const filterSlice = createSlice({
     reducers:{
         changeFilter: (state, { payload }) => {
             state.filter.forEach((item) => {
+                console.log(payload)
                 if(item.id === payload) {
                     item.status = 'active'
                 } else {

@@ -3,6 +3,7 @@ interface Ifilter {
     src: string;
     srcActive: string;
     status: string;
+    endpoint?: string[];
 }
 export interface filterState {
     filter: Ifilter[];

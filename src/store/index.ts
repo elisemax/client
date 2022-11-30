@@ -2,8 +2,9 @@ import { configureStore } from '@reduxjs/toolkit';
 import content from './slice/contentSlice'
 import filter from './slice/filterSlice'
 
-const customMiddleware = () => (next:Function) => (action:string) =>{
-    if (action) {
+const customMiddleware = () => (next:Function) => (action:any) =>{
+    console.log(action)
+    if (typeof action==='string') {
         return next({
             type: action
         })

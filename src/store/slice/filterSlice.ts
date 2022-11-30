@@ -28,7 +28,6 @@ const filterSlice = createSlice({
     reducers:{
         changeFilter: (state, { payload }) => {
             state.filter.forEach((item) => {
-                console.log(payload)
                 if(item.id === payload) {
                     item.status = 'active'
                 } else {

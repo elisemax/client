@@ -11,8 +11,18 @@ import { useHttp } from '../../hooks/http.hook';
 import { useState, useEffect} from 'react';
 import { PlusIcon as PlusIconMini } from '@heroicons/react/20/solid'
 import { useTypeSelector } from '../../hooks/useTypeSelector';
+import { useDispatch } from 'react-redux';
+import { fetchContent } from '../../store/slice/contentSlice';
 const Content = (props: any) => {
-    
+    const activeState = useTypeSelector(state => {
+        let activeState: string = '';
+        state.filter.filter.forEach((item) => {
+            if (item.status === 'active') {
+                activeState = item.id;
+            }
+        })
+        return activeState;
+    });
     const { id } = props;
     const { request } = useHttp();
     const [dataConsulations, setDataConsultation] = useState([]);
@@ -22,7 +32,7 @@ const Content = (props: any) => {
     const [devButton, setDevButton] = useState(false);
 
     useEffect(() => {
-        if (id === 1) {
+        if (activeState === props.id) {
             request('http://34.118.48.240:8080/patient/encounters/1', 'GET', null)
                 .then((data) => {
                     setDataConsultation(data);
@@ -47,9 +57,6 @@ const Content = (props: any) => {
                 .then((data) => {
                     setDataPrescription(data);
                 });
-        }
-        if (id === 4) {
-
         }
     }, [id]);
     const renderContentConsultaion = (data: any) => {
@@ -94,10 +101,6 @@ const Content = (props: any) => {
             resStyle = `mr-5 text-right font-bold text-xs text-green-400`;
             medTest = '1/1'
         }
-
-        //if (nowDate.getFullYear()-1 > oldDate) {
-        //    finalResult = true
-        //}
 
         return (<div className="pt-3 px-5">
             <div className="bg-green-100 rounded">
@@ -337,7 +340,6 @@ const Content = (props: any) => {
     const elementToday = renderContentToday()
     const elementReports = renderContentReports()
     const renderContent = (id: number) => {
-        console.log(id)
         if (id === 1) {
             return (<div>
                 <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">Consultation</h2>

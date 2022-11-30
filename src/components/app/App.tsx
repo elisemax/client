@@ -21,7 +21,6 @@ function App()    {
 
   const buttonsCreate = (props: any) => {
     const { src, srcActive, name, id } = props
-    console.log(id)
     const styleWhite = 'inline-flex items-center rounded-full border border-transparent p-4 text-white shadow-lg bg-orange-500 focus:outline-none focus:ring-2 focus:ring-offset-2'
     const styleOrange = 'inline-flex items-center rounded-full border border-transparent p-4 text-white shadow-lg bg-white focus:outline-none focus:ring-2 focus:ring-offset-2'
     return (
@@ -50,7 +49,6 @@ function App()    {
           </button><div className="font-bold text-xs text-center text-gray-400">{name}</div></div></>
       )
   }
-
   return (
     <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 ">
       <div className="absolute inset-0 bg-[url('resource/background.png')] bg-no-repeat">

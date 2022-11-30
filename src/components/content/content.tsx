@@ -176,11 +176,11 @@ const Content = () => {
                 <div className="pt-3 px-5">
                     <div className="bg-green-100 rounded">
                         <div className="max-w-7xl py-1 sm:py-24 sm:px-6 lg:px-8 rounded">
-                            <div className='flex justify-between'>
-                                <div><img className='ml-3' src={devIcon} alt="icon" />
-                                    <h2 className="py-1 text-xs ml-2 font-bold tracking-tight text-green-600">{data}</h2></div>
-                                <div><button onClick={() => { setDevButton(!devButton) }} className='rounded-full border border-green-600 border-transparent p-2 text-white shadow-lg bg-green-100 mr-3'>
-                                    <PlusIconMini className="h-4 w-4 text-green-600" aria-hidden="true" /></button></div>
+                            <div className='flex justify-between items-center'>
+                                <div className='flex'><img className='ml-3' src={devIcon} alt="icon" />
+                                    <h2 className="text-xs ml-2 leading-7 font-bold tracking-tight text-green-600">{data}</h2></div>
+                                <div className='mt-1 mr-3 items-center'><button onClick={() => { setDevButton(!devButton) }} className='rounded-full border-2 border-green-700 border-transparent text-white shadow-lg bg-green-100'>
+                                    <PlusIconMini className="h-4 w-4 text-green-700" aria-hidden="true" /></button></div>
                             </div>
                         </div>
                         <div className="mt-1 border-t border-gray-500/10 pt-1">
@@ -209,11 +209,11 @@ const Content = () => {
                 <div className="pt-3 px-5">
                     <div className="bg-green-100 rounded">
                         <div className="max-w-7xl py-1 sm:py-24 sm:px-6 lg:px-8 rounded">
-                            <div className='flex justify-between'>
-                                <div><img className='ml-3' src={devIcon} alt="icon" />
-                                    <h2 className="py-1 text-xs ml-2 font-bold tracking-tight text-green-600">{data}</h2></div>
-                                <div><button onClick={() => { setDevButton(!devButton) }} className='rounded-full border border-green-600 border-transparent p-2 text-white shadow-lg bg-green-100 mr-3'>
-                                    <PlusIconMini className="h-4 w-4 text-green-600" aria-hidden="true" /></button></div>
+                            <div className='flex justify-between items-center'>
+                                <div className='flex'><img className='ml-3' src={devIcon} alt="icon" />
+                                    <h2 className="text-xs ml-2 leading-7 font-bold tracking-tight text-green-600">{data}</h2></div>
+                                <div className='mt-1 mr-3 items-center'><button onClick={() => { setDevButton(!devButton) }} className='rounded-full border-2 border-green-700 border-transparent text-white shadow-lg bg-green-100'>
+                                    <PlusIconMini className="h-4 w-4 text-green-700" aria-hidden="true" /></button></div>
                             </div>
                         </div>
                     </div>

@@ -14,7 +14,7 @@ import { fetchContent } from '../../store/slice/contentSlice';
 import { useTypeDispatch } from '../../hooks/useAppDispatch';
 import { Ifilter } from '../../types/filter';
 
-const Content = (props: any) => {
+const Content = () => {
     const activeState = useTypeSelector(state => {
         let activeState: Ifilter = { id: '',status: '',src: '', srcActive: ''};
         state.filter.filter.forEach((item) => {
@@ -25,7 +25,6 @@ const Content = (props: any) => {
         return activeState;
     });
     const dispatch = useTypeDispatch();
-    const { id } = props;
     const [dataConsulations, setDataConsultation] = useState([]);
     const [dataLaboratory, setDataLaboratory] = useState([]);
     const [dataPrescription, setDataPrescription] = useState([]);
@@ -66,8 +65,6 @@ const Content = (props: any) => {
                 </div>
             </div>
         </div>)
-
-
     }
     const renderContentLaboratory = (data: any) => {
         const oldDate = Date.parse(data.time)
@@ -325,29 +322,29 @@ const Content = (props: any) => {
     const elementInsulin = renderContentInsulin()
     const elementToday = renderContentToday()
     const elementReports = renderContentReports()
-    const renderContent = (id: string) => {
-        if (activeState.id === 'some') {
+    const renderContent = () => {
+        if (activeState.id === 'Doctors') {
             return (<div>
                 <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">Consultation</h2>
                 {elementsConsultation}
                 <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">Laboratory</h2>
                 {elementsLaboratory}
             </div>)
-        } else if (activeState.id === 'consultation') {
+        } else if (activeState.id === 'Insulin') {
             return (<div>{elementInsulin}</div>)
         }
-        else if (activeState.id === 'laboratory') {
+        else if (activeState.id === 'Meds') {
             return (<div>
                 <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">Prescription</h2>
                 {elementMeds}
             </div>)
         }
-        else if (activeState.id === 'devices') {
+        else if (activeState.id === 'Devices') {
             return (<div>
                 {elementsDevices}
             </div>)
         }
-        else if (activeState.id === 'today') {
+        else if (activeState.id === 'Today') {
             return (<div>
                 <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">How do you feel today?</h2>
                 {elementToday}
@@ -359,13 +356,13 @@ const Content = (props: any) => {
                 {elementReports}
             </div>)
         }
-        else if (activeState.id=== 'insulin') {
+        else if (activeState.id=== 'Chat') {
             return
         }
     }
     return (
         <>
-            {renderContent(id)}
+            {renderContent()}
         </>
     )
 }

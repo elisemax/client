@@ -4,7 +4,6 @@ import icon from '../../resource/User-icon.png';
 import Content from '../content/content';
 import MenuBot from '.././menuBot/menuBot';
 import MenuTop from '../menuTop/menuTop';
-import { useTypeSelector } from '../../hooks/useTypeSelector';
 
 function App(){
   return (

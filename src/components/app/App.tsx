@@ -38,32 +38,17 @@ function App()    {
     )
   }
   const buttonsCreateBottom = (props: any) => {
-    const { src, name, id } = props
-    if (activeState === id) {
-      return (
-        <><div><button
-          type="button"
-          className="inline-flex items-center"
-          onClick={() => dispatch(changeFilter(id))}
-        >
-          <img className="w-6 h-6" src={src} alt="dev" />
-        </button><div className="mt-1 font-bold text-xs text-center text-gray-400">{name}</div></div></>
-      )
-    }else{
+    const { src, name,srcActive, id } = props
       return (
         <>
         <div><button
           type="button"
           className="inline-flex items-center"
-          onClick={() => {
-            console.log(id);
-            dispatch(changeFilter(id))
-          }}
+          onClick={() => dispatch(changeFilter(id))}
         >
-          <img className="w-6 h-6" src={src} alt="dev" />
+            <img className="w-6 h-6" src={activeState === id ? srcActive : src} alt="dev" />
           </button><div className="font-bold text-xs text-center text-gray-400">{name}</div></div></>
       )
-    }
   }
 
   return (

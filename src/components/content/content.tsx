@@ -121,7 +121,6 @@ const Content = () => {
                 </div>
             </div>
         </div>)
-
     }
     const renderContentMedication = (data: any) => {
         let resStyle = `mr-5 text-right font-bold text-xs text-red-500`;
@@ -184,20 +183,20 @@ const Content = () => {
                             </div>
                         </div>
                         <div className="mt-1 border-t border-gray-500/10 pt-1">
-                            <dl className="grid grid-cols-2">
+                            <dl className="flex">
                                 <div>
-                                    <dt className="tnext-xs ml-3 font-medium leading-5 text-gray-400">Installed on a date:</dt>
+                                    <dt className="text-xs ml-3 font-medium leading-5 text-gray-400">Installed on a date:</dt>
                                 </div>
                                 <div>
-                                    <dd className="mr-5 text-right font-bold text-xs text-stone-500">21/11/2022</dd>
+                                    <dd className="ml-1 items-center font-bold text-xs text-stone-500">21/11/2022</dd>
                                 </div>
                             </dl>
-                            <dl className="grid grid-cols-2">
+                            <dl className="flex">
                                 <div>
                                     <dt className="text-xs ml-3 font-medium leading-5 text-gray-400">Remaining days:</dt>
                                 </div>
                                 <div>
-                                    <dd className="mr-5 text-right font-bold text-xs text-green-500">14</dd>
+                                    <dd className="ml-1 font-bold text-xs text-green-500">14</dd>
                                 </div>
                             </dl>
                         </div>

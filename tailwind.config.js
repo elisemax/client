@@ -7,6 +7,10 @@ module.exports = {
     extend: {
       backgroundImage: {
         'background': "url('resource/background.png')",
+      },
+      fontFamily: {
+        'ubuntu': 'Ubuntu',
+        'nunito': 'Nunito',
       }
     },
   },

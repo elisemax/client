@@ -24,7 +24,7 @@ export const MenuBot = () => {
                     onClick={() => dispatch(changeFilter(id))}>
                     <img className="w-6 h-6" src={activeState === id ? srcActive : src} alt="dev" />
                 </button>
-                <div className="font-bold text-xs text-center text-gray-400">{id}</div>
+                <h2 className="font-bold text-xs text-center text-gray-400">{id}</h2>
             </div>)
     }
     const elements = items.map((item: any) => renderItem(item))

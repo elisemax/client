@@ -27,7 +27,7 @@ export const MenuTop = () => {
                     onClick={() => dispatch(changeFilter(id))}>
                     <img className="w-6 h-6" src={activeState === id ? srcActive : src} alt="dev" />
                 </button>
-                <div className="mt-1 font-bold text-xs text-center text-violet-700">{id}</div>
+                <h2 className="mt-1 font-bold text-xs text-center text-violet-700">{id}</h2>
             </div>
             </li>
             )

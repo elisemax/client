@@ -34,11 +34,11 @@ export const MenuTop = () => {
     }
     const elements = items.map((item: any) => renderItem(item))
     return (
-        <section className='pt-14'>
+        <>
             <ul role="list" className="flex content-center justify-around flex-row">
                 {elements}
             </ul>
-        </section>
+        </>
     )
 }
 export default MenuTop;

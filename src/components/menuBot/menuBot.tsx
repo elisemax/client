@@ -29,7 +29,7 @@ export const MenuBot = () => {
     }
     const elements = items.map((item: any) => renderItem(item))
     return (
-        <section>
+        <>
             <div className='bg-gray-100
              text-white text-center
              border-t-2 border-gray-300
@@ -41,7 +41,7 @@ export const MenuBot = () => {
             {elements}
             </div>
             </div>
-        </section >
+        </ >
     )
 }
 export default MenuBot;

@@ -1,4 +1,4 @@
-interface Ifilter {
+export interface Ifilter {
     id: string;
     src: string;
     srcActive: string;

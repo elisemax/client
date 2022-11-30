@@ -7,24 +7,25 @@ import devIcon from '../../resource/devIcon.svg';
 import notif from '../../resource/notif.svg'
 import done from '../../resource/done.svg'
 import graph from '../../resource/graph.png'
-import { useHttp } from '../../hooks/http.hook';
 import { useState, useEffect} from 'react';
 import { PlusIcon as PlusIconMini } from '@heroicons/react/20/solid'
 import { useTypeSelector } from '../../hooks/useTypeSelector';
-import { useDispatch } from 'react-redux';
 import { fetchContent } from '../../store/slice/contentSlice';
+import { useTypeDispatch } from '../../hooks/useAppDispatch';
+import { Ifilter } from '../../types/filter';
+
 const Content = (props: any) => {
     const activeState = useTypeSelector(state => {
-        let activeState: string = '';
+        let activeState: Ifilter = { id: '',status: '',src: '', srcActive: ''};
         state.filter.filter.forEach((item) => {
             if (item.status === 'active') {
-                activeState = item.id;
+                activeState = item
             }
         })
         return activeState;
     });
+    const dispatch = useTypeDispatch();
     const { id } = props;
-    const { request } = useHttp();
     const [dataConsulations, setDataConsultation] = useState([]);
     const [dataLaboratory, setDataLaboratory] = useState([]);
     const [dataPrescription, setDataPrescription] = useState([]);
@@ -32,33 +33,18 @@ const Content = (props: any) => {
     const [devButton, setDevButton] = useState(false);
 
     useEffect(() => {
-        if (activeState === props.id) {
-            request('http://34.118.48.240:8080/patient/encounters/1', 'GET', null)
-                .then((data) => {
-                    setDataConsultation(data);
-                });
-            request('http://34.118.48.240:8080/patient/tests/1', 'GET', null)
-                .then((data) => {
-                    setDataLaboratory(data);
-                });
+        if (activeState.status) {
+            if (activeState.endpoint) {
+                activeState.endpoint.forEach((item: any) => {
+                    dispatch(fetchContent(item));
+                })
+            }
         }
-        if (id === 2) {
-            request('http://34.118.48.240:8080/patient/encounters/1', 'GET', null)
-                .then((data) => {
-                    setDataConsultation(data);
-                });
-            request('http://34.118.48.240:8080/patient/tests/1', 'GET', null)
-                .then((data) => {
-                    setDataLaboratory(data);
-                });
+        else{
+            console.log('useEffect else');
         }
-        if (id === 3) {
-            request('http://34.118.48.240:8080/patient/meds/1', 'GET', null)
-                .then((data) => {
-                    setDataPrescription(data);
-                });
-        }
-    }, [id]);
+         // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activeState]);
     const renderContentConsultaion = (data: any) => {
         return (<div className="pt-3 px-5">
             <div className="bg-green-100 rounded">
@@ -339,41 +325,41 @@ const Content = (props: any) => {
     const elementInsulin = renderContentInsulin()
     const elementToday = renderContentToday()
     const elementReports = renderContentReports()
-    const renderContent = (id: number) => {
-        if (id === 1) {
+    const renderContent = (id: string) => {
+        if (activeState.id === 'some') {
             return (<div>
                 <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">Consultation</h2>
                 {elementsConsultation}
                 <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">Laboratory</h2>
                 {elementsLaboratory}
             </div>)
-        } else if (id === 2) {
+        } else if (activeState.id === 'consultation') {
             return (<div>{elementInsulin}</div>)
         }
-        else if (id === 3) {
+        else if (activeState.id === 'laboratory') {
             return (<div>
                 <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">Prescription</h2>
                 {elementMeds}
             </div>)
         }
-        else if (id === 4) {
+        else if (activeState.id === 'devices') {
             return (<div>
                 {elementsDevices}
             </div>)
         }
-        else if (id === 5) {
+        else if (activeState.id === 'today') {
             return (<div>
                 <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">How do you feel today?</h2>
                 {elementToday}
             </div>)
         }
-        else if (id === 6) {
+        else if (activeState.id === 'Reports') {
             return (<div>
                 <h2 className="pl-6 pt-10 text-lg text-amber-800 uppercase font-medium">Glucose</h2>
                 {elementReports}
             </div>)
         }
-        else if (id === 7) {
+        else if (activeState.id=== 'insulin') {
             return
         }
     }

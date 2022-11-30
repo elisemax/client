@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, AnyAction } from "@reduxjs/toolkit";
 import { useHttp } from "../../hooks/http.hook";
 import { ContentState } from "../../types/content";
 const initialState: ContentState = {
@@ -6,13 +6,13 @@ const initialState: ContentState = {
     loading: false,
     error: null
 }
-export const fetchContent = createAsyncThunk<ContentState>(
+export const fetchContent = createAsyncThunk(
     'content/fetchContent',
-    async (filter) => {
+    (filter:string) => {
+        console.log(filter)
         const { request } = useHttp();
-        const data = await request(`http://34.118.48.240:8080/patient/${filter}/1`, 'GET', null)
+        const data = request(`http://34.118.48.240:8080/patient/${filter}/1`, 'GET', null)
         return data;
-        
     }
 )
 
@@ -34,5 +34,5 @@ const { actions, reducer } = contentSlice;
 export default reducer;
 
 //export const {
-
+//
 //} = actions;

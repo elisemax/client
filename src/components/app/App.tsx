@@ -4,8 +4,11 @@ import icon from '../../resource/User-icon.png';
 import Content from '../content/content';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
 import { useDispatch } from 'react-redux';
+import { useCallback } from 'react';
 import { changeFilter } from '../../store/slice/filterSlice';
-function App()    {
+import { MenuBot } from '.././menuBot/menuBot';
+import { MenuTop } from '../menuTop/menuTop';
+function App(){
   const activeState = useTypeSelector(state => {
       let activeState: string = '';
       state.filter.filter.forEach((item) => {
@@ -18,7 +21,7 @@ function App()    {
   const dispatch = useDispatch();
   const images = useTypeSelector(state => state.filter.filter.slice(3));
   const imagesBottom  = useTypeSelector(state => state.filter.filter.slice(0, 3));
-
+  const onFilterChange = useCallback((id: string )=> dispatch(changeFilter(id)), [activeState])
   const buttonsCreate = (props: any) => {
     const { src, srcActive, name, id } = props
     const styleWhite = 'inline-flex items-center rounded-full border border-transparent p-4 text-white shadow-lg bg-orange-500 focus:outline-none focus:ring-2 focus:ring-offset-2'
@@ -65,7 +68,7 @@ function App()    {
           <ul role="list" className="flex content-center justify-around flex-row">
             {images.map((img) => (
               <li>
-                {buttonsCreate(img)}
+                <MenuTop img={img} onFilterChange={() => onFilterChange(img.id)} activeState={activeState}></MenuTop>
               </li>
             ))}
           </ul>
@@ -85,7 +88,7 @@ function App()    {
               {
                 imagesBottom.map((img)=>(
                   <>
-                  {buttonsCreateBottom(img)}
+                    <MenuBot img={img} onFilterChange={() => onFilterChange(img.id)} activeState={activeState}></MenuBot>
                   </>
                 ))}
             </div>

@@ -6,11 +6,9 @@ import AppBanner from '../appBanner/appBanner';
 function App(){
   return (<>
     <AppBanner/>
-        <div className='pt-32'>
         <MenuTop/>
           <Content/>
         <MenuBot/>
-      </div>
      </>
   );
 }

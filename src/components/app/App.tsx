@@ -22,36 +22,6 @@ function App(){
   const images = useTypeSelector(state => state.filter.filter.slice(3));
   const imagesBottom  = useTypeSelector(state => state.filter.filter.slice(0, 3));
   const onFilterChange = useCallback((id: string )=> dispatch(changeFilter(id)), [activeState])
-  const buttonsCreate = (props: any) => {
-    const { src, srcActive, name, id } = props
-    const styleWhite = 'inline-flex items-center rounded-full border border-transparent p-4 text-white shadow-lg bg-orange-500 focus:outline-none focus:ring-2 focus:ring-offset-2'
-    const styleOrange = 'inline-flex items-center rounded-full border border-transparent p-4 text-white shadow-lg bg-white focus:outline-none focus:ring-2 focus:ring-offset-2'
-    return (
-      <div>
-        <button
-          type="button"
-          className={activeState === id ? styleWhite : styleOrange}
-          onClick={() =>  dispatch(changeFilter(id))}
-        >
-          <img className="w-6 h-6" src={activeState === id ? srcActive : src} alt="dev" />
-        </button>
-        <div className="mt-1 font-bold text-xs text-center text-violet-700">{name}</div>
-      </div>
-    )
-  }
-  const buttonsCreateBottom = (props: any) => {
-    const { src, name,srcActive, id } = props
-      return (
-        <>
-        <div><button
-          type="button"
-          className="inline-flex items-center"
-          onClick={() => dispatch(changeFilter(id))}
-        >
-            <img className="w-6 h-6" src={activeState === id ? srcActive : src} alt="dev" />
-          </button><div className="font-bold text-xs text-center text-gray-400">{name}</div></div></>
-      )
-  }
   return (
     <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 ">
       <div className="absolute inset-0 bg-[url('resource/background.png')] bg-no-repeat">

@@ -279,9 +279,32 @@ const Content = () => {
             </div>
         </div>)
     }
+    
     const elementMeds = dataPrescription.map((item: any) => { return renderContentMedication(item) })
-    const elementsConsultation = dataConsulations.map((item: any) => renderContentConsultaion(item));
-    const elementsLaboratory = dataLaboratory.map((item: any) => renderContentLaboratory(item));
+    const elementsConsultation = {
+        header: 'Doctor exam',
+        icon: infl,
+        title: 'Consultation',
+        border: true,
+        mark: {
+            header:'green',
+            text:'orange',
+            space: 'spaceAround'
+        },
+        text:[ {textHeader:'time',textContent:'12/12/2022'}]
+    }
+    const elementsLaboratory = 
+    {
+        header: 'Doctor exam',
+        title: 'Consultation',
+        border: false,
+        mark: {
+            header: 'red',
+            text: 'green',
+            space: 'spaceBetween'
+        },
+        text: [{ textHeader: 'time', textContent: '12/12/2022' }]
+    }
     const elementsDevices = dataDevices.map((item: any) => renderContentDevices(item));
     const elementToday = renderContentToday()
     const elementReports = renderContentReports()
@@ -300,13 +323,13 @@ const Content = () => {
         if (activeState.id === 'Doctors') {
             return (<div>
                 <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">Consultation</h2>
-                {elementsConsultation}
+                <ContentItem content={elementsConsultation}/>
                 <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">Laboratory</h2>
-                {elementsLaboratory}
+                <ContentItem content={elementsLaboratory}/>
             </div>)
         } else if (activeState.id === 'Insulin') {
             return (<div>
-                <ContentItem title='Insulin' content={elementsInsulin} />
+                <ContentItem content={elementsInsulin} />
             </div>)
         }
         else if (activeState.id === 'Meds') {

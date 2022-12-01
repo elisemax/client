@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable jsx-a11y/no-redundant-roles */
-import infl from '../../resource/infl.svg';
-import bottle from '../../resource/medBottle.svg';
-import pill from '../../resource/presc.svg';
-import devIcon from '../../resource/devIcon.svg';
-import notif from '../../resource/notif.svg'
-import done from '../../resource/done.svg'
+import infl from '../../resource/iconsContent/infl.svg';
+import bottle from '../../resource/iconsContent/medBottle.svg';
+import pill from '../../resource/iconsContent/presc.svg';
+import devIcon from '../../resource/iconsContent/devIcon.svg';
+import notif from '../../resource/iconsContent/notif.svg'
+import done from '../../resource/iconsContent/done.svg'
 import graph from '../../resource/graph.png'
 import { useState, useEffect} from 'react';
 import { PlusIcon as PlusIconMini } from '@heroicons/react/20/solid'
@@ -13,7 +13,7 @@ import { useTypeSelector } from '../../hooks/useTypeSelector';
 import { fetchContent } from '../../store/slice/contentSlice';
 import { useTypeDispatch } from '../../hooks/useAppDispatch';
 import { Ifilter } from '../../types/filter';
-import ContentItem from '../contentItem/contentItem';
+import ContentItem from '../contentItem/ContentItem';
 
 const Content = () => {
     const activeState = useTypeSelector(state => {
@@ -178,9 +178,7 @@ const Content = () => {
                             <div className='flex justify-between items-center'>
                                 <div className='flex'><img className='ml-3' src={devIcon} alt="icon" />
                                     <h2 className="text-xs ml-2 leading-7 font-bold tracking-tight text-green-600">{data}</h2></div>
-                                <div className='mt-1 mr-3 items-center'><button onClick={() => { setDevButton(!devButton) }} className='rounded-full border-2 border-green-700
-                                 text-white shadow-lg bg-green-100'>
-                                    <PlusIconMini className="h-4 w-4 text-green-700" aria-hidden="true" /></button></div>
+
                             </div>
                         </div>
                         <div className="mt-1 border-t border-gray-500/10 pt-1">
@@ -290,7 +288,11 @@ const Content = () => {
     const elementsInsulin = { header:'Doctors exam',
                             icon: infl,
                             title: 'Insulin',
+                            btn:false,
                             border:true,
+                            mark:{header:'green',
+                                   text:'stone',
+                                   space:'spaceBetween'},
                             text:[{textHeader:'Long insulin',textContent:'__UN'},
                                 {textHeader:'Short insulin',textContent:'__UN'},],
                         }

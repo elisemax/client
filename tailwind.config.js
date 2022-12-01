@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'background': "url('resource/background.png')",
+        'background': "url('resource/bg/background.png')",
       },
       fontFamily: {
         'ubuntu': 'Ubuntu',

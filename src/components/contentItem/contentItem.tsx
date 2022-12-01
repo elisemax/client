@@ -1,40 +1,30 @@
+import { ItemText } from "./items/ItemText";
+import { ItemBorder } from "./items/ItemBorder";
+import { ItemHeader } from "./items/ItemHeader";
+
 const ContentItem = (props: any) => {
-    const { header, text, mark , icon, btn, border } = props.content;
-    console.log(props)
-    const renderHeader = () =>{
-        return(
-        <div className='flex'>
-            <img className='ml-3' src={icon} alt="" />
-            <h2 className="py-1 text-xs ml-2 font-bold tracking-tight text-green-600">{header}</h2>
-        </div>)
-    }  
-    const renderBorder = () => {
-        const element = renderText();
-        return (
-            <div className="mt-1 border-t border-gray-500/20 pt-1">
-                {element}
-            </div>
-        )
+    const { border } = props.content;
+    const stylesText = {
+        red: 'mx-3 text-right font-bold text-xs text-red-500',
+        gray: 'text-xs mx-3 font-medium leading-5 text-stone-400',
+        green: 'mx-3 text-right font-bold text-xs leading-5 text-green-600',
+        orange: 'text-xs mx-3  font-medium leading-5 text-orange-500',
+        stone: 'mx-3 text-right font-bold text-xs leading-5 text-stone-500',
+        spaceBetween: 'flex justify-between items-center',
+        spaceAround: 'flex justify-start',
     }
-    const renderText = () => {
-        return (
-            text.map((item: any) => { 
-            return(<dl className="grid grid-cols-2">
-                <div>
-                    <dt className="text-xs ml-3 font-medium leading-5 text-gray-400">{item.textHeader}</dt>
-                </div>
-                <div>
-                    <dd className="mr-5 text-right font-bold text-xs text-amber-700">{item.textContent}</dd>
-                </div>
-            </dl>)})
-        )
+    const stylesHeader = {
+        red: 'py-1 text-xs ml-2 leading-7 font-bold tracking-tight text-red-500',
+        green: 'py-1 text-xs ml-2 leading-7 font-bold tracking-tight text-green-600',
     }
-    const contentHeader = renderHeader();
-    const contentBorder = renderBorder();
-    const contentText = renderText(); 
+
+    const contentHeader = <ItemHeader content={props.content} stylesText={stylesText} stylesHeader={stylesHeader}/>
+    const contentBorder = <ItemBorder content={props.content} stylesText={stylesText} />;
+    const contentText = <ItemText content={props.content} stylesText={stylesText} />
+
     return (
         <div className="pt-3 px-5">
-            <div className="bg-green-100 rounded">
+            <div className="bg-green-50 rounded">
                 <div className="max-w-7xl py-1 sm:py-24 sm:px-6 lg:px-8 rounded">
                     {contentHeader}
                     {border ? contentBorder : contentText}
@@ -42,4 +32,5 @@ const ContentItem = (props: any) => {
             </div>
         </div>)
 }
+
 export default ContentItem;

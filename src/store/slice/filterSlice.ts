@@ -1,14 +1,14 @@
-import devices from '../.././resource/devices.svg';
-import doctors from '../.././resource/doctors.svg';
-import insulin from '../.././resource/insulin.svg';
-import medications from '../.././resource/medications.svg';
-import insulinActive from '../.././resource/insulinWhite.svg'
-import medicationsActive from '../.././resource/medicationsWhite.svg'
-import doctorsActive from '../.././resource/doctorsWhite.svg'
-import devicesActive from '../.././resource/devicesWhite.svg'
-import chat from '../../resource/chat.svg'
-import reports from '../../resource/reports.svg'
-import today from '../../resource/today.svg'
+import devices from '../.././resource/iconsMenu/devices.svg';
+import doctors from '../.././resource/iconsMenu/doctors.svg';
+import insulin from '../.././resource/iconsMenu/insulin.svg';
+import medications from '../.././resource/iconsMenu/medications.svg';
+import insulinActive from '../.././resource/iconsMenu/insulinWhite.svg'
+import medicationsActive from '../.././resource/iconsMenu/medicationsWhite.svg'
+import doctorsActive from '../.././resource/iconsMenu/doctorsWhite.svg'
+import devicesActive from '../.././resource/iconsMenu/devicesWhite.svg'
+import chat from '../../resource/iconsMenu/chat.svg'
+import reports from '../../resource/iconsMenu/reports.svg'
+import today from '../../resource/iconsMenu/today.svg'
 
 import { filterState } from '../../types/filter';
 import { createSlice } from "@reduxjs/toolkit";

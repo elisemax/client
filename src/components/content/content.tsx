@@ -7,12 +7,12 @@ import devIcon from '../../resource/iconsContent/devIcon.svg';
 import notif from '../../resource/iconsContent/notif.svg'
 import done from '../../resource/iconsContent/done.svg'
 import graph from '../../resource/graph.png'
-import { useState, useEffect} from 'react';
-import { PlusIcon as PlusIconMini } from '@heroicons/react/20/solid'
+import { useEffect } from 'react';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
 import { fetchContent } from '../../store/slice/contentSlice';
 import { useTypeDispatch } from '../../hooks/useAppDispatch';
 import { Ifilter } from '../../types/filter';
+import { ContentHeader } from '../contentHeader/ContentHeader';
 import ContentItem from '../contentItem/ContentItem';
 
 const Content = () => {
@@ -67,7 +67,6 @@ const Content = () => {
     const elementsLaboratory = 
     {
         header: 'Doctor exam',
-        title: 'Consultation',
         border: false,
         mark: {
             header: 'red',
@@ -77,9 +76,8 @@ const Content = () => {
         text: [{ textHeader: 'time', textContent: '12/12/2022' }]
     }
     const elementsDevices = {
-        header: 'Doctor exam',
-        icon: infl,
-        title: 'Consultation',
+        header: 'Dexcom G6',
+        icon: devIcon,
         border: true,
         mark: {
             header: 'green',
@@ -112,7 +110,7 @@ const Content = () => {
         },
         text: [{ textHeader: 'time', textContent: '12/12/2022' }]
     }
-    const elementsInsulin = { header:'Doctors exam',
+    const elementsInsulin =[ { header:'Doctors exam',
                             icon: infl,
                             title: 'Insulin',
                             btn:false,
@@ -122,42 +120,59 @@ const Content = () => {
                                    space:'spaceBetween'},
                             text:[{textHeader:'Long insulin',textContent:'__UN'},
                                 {textHeader:'Short insulin',textContent:'__UN'},],
-                        }
+                        },
+                        {
+                        header: 'Doctors exam',
+                        icon: infl,
+                        title: 'Insulin',
+                        btn: false,
+                        border: true,
+                        mark: {
+                            header: 'green',
+                            text: 'stone',
+                            space: 'spaceBetween'
+                        },
+                        text: [{ textHeader: 'Long insulin', textContent: '__UN' },
+                        { textHeader: 'Short insulin', textContent: '__UN' },],
+                    }
+                    ]
     const renderContent = () => {
         if (activeState.id === 'Doctors') {
-            return (<div>
-                <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">Consultation</h2>
+            return (<>
+                <ContentHeader headerContent='Consultation'/>
                 <ContentItem content={elementsConsultation}/>
-                <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">Laboratory</h2>
+                <ContentHeader headerContent='Laboratory'/>
                 <ContentItem content={elementsLaboratory}/>
-            </div>)
+            </>)
         } else if (activeState.id === 'Insulin') {
-            return (<div>
-                <ContentItem content={elementsInsulin} />
-            </div>)
+            return (<>
+                {elementsInsulin.map((item, index) => {
+                    return (<ContentItem key={index} content={item}/>)
+                })}
+            </>)
         }
         else if (activeState.id === 'Meds') {
-            return (<div>
-                <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">Prescription</h2>
+            return (<>
+                <ContentHeader headerContent='Prescription'/>
                 <ContentItem content={elementMeds} />
-            </div>)
+            </>)
         }
         else if (activeState.id === 'Devices') {
-            return (<div>
+            return (<>
                 <ContentItem content={elementsDevices} />
-            </div>)
+            </>)
         }
         else if (activeState.id === 'Today') {
-            return (<div>
-                <h2 className="pl-6 pt-10 text-base text-amber-800 uppercase font-medium">How do you feel today?</h2>
+            return (<>
+                <ContentHeader headerContent='How do you feel today?'/>
                 <ContentItem content={elementToday} />
-            </div>)
+            </>)
         }
         else if (activeState.id === 'Reports') {
-            return (<div>
-                <h2 className="pl-6 pt-10 text-lg text-amber-800 uppercase font-medium">Glucose</h2>
+            return (<>
+                <ContentHeader headerContent='Glucose'/>
                <ContentItem content={elementReports}/>
-            </div>)
+            </>)
         }
         else if (activeState.id === 'Chat') {
             return

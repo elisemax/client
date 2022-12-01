@@ -10,7 +10,7 @@ const AppBanner = () => {
                     <h1 className='text-2xl leading-7 ml-12 mr-12 font-semibold text-slate-50/60 text-center'>Good<br />morning!</h1>
                     <div className="h-12 w-12">
                         <img src={icon} alt="icon" />
-                        <div className='text-center text-violet-900'>
+                        <div className='text-center text-violet-900 font-bold font-ubuntu'>
                             Marie
                         </div>
                     </div>

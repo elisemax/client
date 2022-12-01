@@ -13,6 +13,7 @@ import { useTypeSelector } from '../../hooks/useTypeSelector';
 import { fetchContent } from '../../store/slice/contentSlice';
 import { useTypeDispatch } from '../../hooks/useAppDispatch';
 import { Ifilter } from '../../types/filter';
+import ContentItem from '../contentItem/contentItem';
 
 const Content = () => {
     const activeState = useTypeSelector(state => {
@@ -219,36 +220,6 @@ const Content = () => {
                 </div>)
         }
     }
-    const renderContentInsulin = () => {
-        return (<div className="pt-3 px-5">
-            <div className="bg-green-100 rounded">
-                <div className="max-w-7xl py-1 sm:py-24 sm:px-6 lg:px-8 rounded">
-                    <div className='flex'>
-                        <img className='ml-3' src={infl} alt="" />
-                        <h2 className="py-1 text-xs ml-2 font-bold tracking-tight text-green-600">Doctor exam</h2>
-                    </div>
-                    <div className="mt-1 border-t border-gray-500/10 pt-1">
-                        <dl className="grid grid-cols-2">
-                            <div>
-                                <dt className="text-xs ml-3 font-medium leading-5 text-gray-400">Long insulint:</dt>
-                            </div>
-                            <div>
-                                <dd className="mr-5 text-right font-bold text-xs text-amber-700">___ UN</dd>
-                            </div>
-                        </dl>
-                        <dl className="grid grid-cols-2">
-                            <div>
-                                <dt className="text-xs ml-3 font-medium leading-5 text-gray-400">Short insulint:</dt>
-                            </div>
-                            <div>
-                                <dd className="mr-5 text-right font-bold text-xs text-amber-700">___ UN</dd>
-                            </div>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-        </div>)
-    }
     const renderContentToday = () => {
         return (<><div className="pt-3 px-5">
             <div className="bg-green-100 rounded">
@@ -314,9 +285,15 @@ const Content = () => {
     const elementsConsultation = dataConsulations.map((item: any) => renderContentConsultaion(item));
     const elementsLaboratory = dataLaboratory.map((item: any) => renderContentLaboratory(item));
     const elementsDevices = dataDevices.map((item: any) => renderContentDevices(item));
-    const elementInsulin = renderContentInsulin()
     const elementToday = renderContentToday()
     const elementReports = renderContentReports()
+    const elementsInsulin = { header:'Doctors exam',
+                            icon: infl,
+                            title: 'Insulin',
+                            border:true,
+                            text:[{textHeader:'Long insulin',textContent:'__UN'},
+                                {textHeader:'Short insulin',textContent:'__UN'},],
+                        }
     const renderContent = () => {
         if (activeState.id === 'Doctors') {
             return (<div>
@@ -326,7 +303,9 @@ const Content = () => {
                 {elementsLaboratory}
             </div>)
         } else if (activeState.id === 'Insulin') {
-            return (<div>{elementInsulin}</div>)
+            return (<div>
+                <ContentItem title='Insulin' content={elementsInsulin} />
+            </div>)
         }
         else if (activeState.id === 'Meds') {
             return (<div>

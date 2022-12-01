@@ -19,7 +19,7 @@ export const MenuBot = () => {
         return (
             <div>
                 <button
-                    type="button"
+                    type="button"   
                     className="inline-flex items-center"
                     onClick={() => dispatch(changeFilter(id))}>
                     <img className="w-6 h-6" src={activeState === id ? srcActive : src} alt="dev" />

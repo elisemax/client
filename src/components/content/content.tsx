@@ -76,7 +76,6 @@ const Content = () => {
         if (nowDate.getTime() - oldDate > 86400000) {
             finalResult = true;
         }
-        //""
         if (finalResult) {
             resStyle = `mr-5 text-right font-bold text-xs text-red-500`;
             medTest = '0/1'
@@ -178,7 +177,8 @@ const Content = () => {
                             <div className='flex justify-between items-center'>
                                 <div className='flex'><img className='ml-3' src={devIcon} alt="icon" />
                                     <h2 className="text-xs ml-2 leading-7 font-bold tracking-tight text-green-600">{data}</h2></div>
-                                <div className='mt-1 mr-3 items-center'><button onClick={() => { setDevButton(!devButton) }} className='rounded-full border-2 border-green-700 border-transparent text-white shadow-lg bg-green-100'>
+                                <div className='mt-1 mr-3 items-center'><button onClick={() => { setDevButton(!devButton) }} className='rounded-full border-2 border-green-700
+                                 text-white shadow-lg bg-green-100'>
                                     <PlusIconMini className="h-4 w-4 text-green-700" aria-hidden="true" /></button></div>
                             </div>
                         </div>
@@ -211,7 +211,7 @@ const Content = () => {
                             <div className='flex justify-between items-center'>
                                 <div className='flex'><img className='ml-3' src={devIcon} alt="icon" />
                                     <h2 className="text-xs ml-2 leading-7 font-bold tracking-tight text-green-600">{data}</h2></div>
-                                <div className='mt-1 mr-3 items-center'><button onClick={() => { setDevButton(!devButton) }} className='rounded-full border-2 border-green-700 border-transparent text-white shadow-lg bg-green-100'>
+                                <div className='mt-1 mr-3 items-center'><button onClick={() => { setDevButton(!devButton) }} className='rounded-full border-2 border-green-700 text-white shadow-lg bg-green-100'>
                                     <PlusIconMini className="h-4 w-4 text-green-700" aria-hidden="true" /></button></div>
                             </div>
                         </div>
@@ -247,10 +247,6 @@ const Content = () => {
                     </div>
                 </div>
             </div>
-            <div className='pt-3 text-xs ml-3 font-medium leading-5 text-stone-500'>
-                <b>Short Acting Insulins</b> are used prior to meals and have a quicker onset of action (from approximately 5 min to an hour), peak at 1-4 hours and last from 4-8 hours. These are usually injected 3-4 times per day by the patient.
-            </div>
-            <div className='pt-3 text-xs ml-3 font-medium leading-5 text-stone-500'><b>Long Acting Insulins</b> peak at approximately 1 ½ to 2 hours and their effects last throughout the day from 12-24 hours. These are usually injected 1-2 times per day.</div>
         </div>)
     }
     const renderContentToday = () => {
@@ -307,7 +303,7 @@ const Content = () => {
                 <img className='' src={graph} alt="" />
                 <button
                     type="button"
-                    className="mt-8 items-center rounded-md border border-transparent bg-orange-500 px-3 py-2 text-sm font-Bold leading-4 text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2 text-center"
+                    className="mt-8 items-center rounded-md border bg-orange-500 px-3 py-2 text-sm font-Bold leading-4 text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2 text-center"
                 >
                     SEND REPORT TO MY DOCTOR
                 </button>
@@ -355,7 +351,7 @@ const Content = () => {
                 {elementReports}
             </div>)
         }
-        else if (activeState.id=== 'Chat') {
+        else if (activeState.id === 'Chat') {
             return
         }
     }

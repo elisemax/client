@@ -120,21 +120,7 @@ const Content = () => {
                                    space:'spaceBetween'},
                             text:[{textHeader:'Long insulin',textContent:'__UN'},
                                 {textHeader:'Short insulin',textContent:'__UN'},],
-                        },
-                        {
-                        header: 'Doctors exam',
-                        icon: infl,
-                        title: 'Insulin',
-                        btn: false,
-                        border: true,
-                        mark: {
-                            header: 'green',
-                            text: 'stone',
-                            space: 'spaceBetween'
-                        },
-                        text: [{ textHeader: 'Long insulin', textContent: '__UN' },
-                        { textHeader: 'Short insulin', textContent: '__UN' },],
-                    }
+                        }
                     ]
     const renderContent = () => {
         if (activeState.id === 'Doctors') {
@@ -159,7 +145,7 @@ const Content = () => {
         }
         else if (activeState.id === 'Devices') {
             return (<>
-                <ContentItem content={elementsDevices} />
+                <ContentItem content={elementsDevices}/>
             </>)
         }
         else if (activeState.id === 'Today') {
@@ -178,9 +164,10 @@ const Content = () => {
             return
         }
     }
+    const content = renderContent();
     return (
         <>
-            {renderContent()}
+            {content}
         </>
     )
 }

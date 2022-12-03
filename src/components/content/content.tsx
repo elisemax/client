@@ -6,7 +6,6 @@ import pill from '../../resource/iconsContent/presc.svg';
 import devIcon from '../../resource/iconsContent/devIcon.svg';
 import notif from '../../resource/iconsContent/notif.svg'
 import done from '../../resource/iconsContent/done.svg'
-import graph from '../../resource/graph.png'
 import { useEffect } from 'react';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
 import { fetchContent } from '../../store/slice/contentSlice';
@@ -14,6 +13,7 @@ import { useTypeDispatch } from '../../hooks/useAppDispatch';
 import { Ifilter } from '../../types/filter';
 import { ContentHeader } from '../contentHeader/ContentHeader';
 import ContentItem from '../contentItem/ContentItem';
+import { ItemChart } from "../contentItem/items/ItemChart";
 
 const Content = () => {
     const activeState = useTypeSelector(state => {
@@ -39,132 +39,46 @@ const Content = () => {
         }
          // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activeState]);    
-    const elementMeds = 
-    {
-        header: 'Doctor exam',
-        icon: infl,
-        title: 'Consultation',
-        border: true,
-        mark: {
-            header: 'green',
-            text: 'orange',
-            space: 'spaceAround'
-        },
-        text: [{ textHeader: 'time', textContent: '12/12/2022' }]
-    }
-    const elementsConsultation = {
-        header: 'Doctor exam',
-        icon: infl,
-        title: 'Consultation',
-        border: true,
-        mark: {
-            header:'green',
-            text:'orange',
-            space: 'spaceAround'
-        },
-        text:[ {textHeader:'time',textContent:'12/12/2022'}]
-    }
-    const elementsLaboratory = 
-    {
-        header: 'Doctor exam',
-        border: false,
-        mark: {
-            header: 'red',
-            text: 'green',
-            space: 'spaceBetween'
-        },
-        text: [{ textHeader: 'time', textContent: '12/12/2022' }]
-    }
-    const elementsDevices = {
-        header: 'Dexcom G6',
-        icon: devIcon,
-        border: true,
-        mark: {
-            header: 'green',
-            text: 'orange',
-            space: 'spaceAround'
-        },
-        text: [{ textHeader: 'time', textContent: '12/12/2022' }]
-    }
-    const elementToday = {
-        header: 'Doctor exam',
-        icon: infl,
-        title: 'Consultation',
-        border: true,
-        mark: {
-            header: 'green',
-            text: 'orange',
-            space: 'spaceAround'
-        },
-        text: [{ textHeader: 'time', textContent: '12/12/2022' }]
-    }
-    const elementReports = {
-        header: 'Doctor exam',
-        icon: infl,
-        title: 'Consultation',
-        border: true,
-        mark: {
-            header: 'green',
-            text: 'orange',
-            space: 'spaceAround'
-        },
-        text: [{ textHeader: 'time', textContent: '12/12/2022' }]
-    }
-    const elementsInsulin =[ { header:'Doctors exam',
+
+    const elementsInsulin ={
+        title: 'Insulin',
+        headerContent: 'Prescription',
+        elem:[ { header:'Doctors exam',
                             icon: infl,
-                            title: 'Insulin',
-                            btn:false,
+                            btn: false,
                             border:true,
                             mark:{header:'green',
                                    text:'stone',
                                    space:'spaceBetween'},
                             text:[{textHeader:'Long insulin',textContent:'__UN'},
                                 {textHeader:'Short insulin',textContent:'__UN'},],
-                        }
-                    ]
+                        },
+            {
+                header: 'Doctors exam',
+                icon: infl,
+                btn: true,
+                border: true,
+                mark: {
+                    header: 'green',
+                    text: 'stone',
+                    space: 'spaceBetween'
+                },
+                text: [{ textHeader: 'Long insulin', textContent: '__UN' },
+                { textHeader: 'Short insulin', textContent: '__UN' },],
+            }
+                    ]}
     const renderContent = () => {
-        if (activeState.id === 'Doctors') {
+        if (activeState.id === elementsInsulin.title) {
             return (<>
-                <ContentHeader headerContent='Consultation'/>
-                <ContentItem content={elementsConsultation}/>
-                <ContentHeader headerContent='Laboratory'/>
-                <ContentItem content={elementsLaboratory}/>
-            </>)
-        } else if (activeState.id === 'Insulin') {
-            return (<>
-                {elementsInsulin.map((item, index) => {
+                <ContentHeader headerContent={elementsInsulin.headerContent}/>
+                {elementsInsulin.elem.map((item, index) => {
                     return (<ContentItem key={index} content={item}/>)
                 })}
             </>)
         }
-        else if (activeState.id === 'Meds') {
-            return (<>
-                <ContentHeader headerContent='Prescription'/>
-                <ContentItem content={elementMeds} />
-            </>)
-        }
-        else if (activeState.id === 'Devices') {
-            return (<>
-                <ContentItem content={elementsDevices}/>
-            </>)
-        }
-        else if (activeState.id === 'Today') {
-            return (<>
-                <ContentHeader headerContent='How do you feel today?'/>
-                <ContentItem content={elementToday} />
-            </>)
-        }
-        else if (activeState.id === 'Reports') {
-            return (<>
-                <ContentHeader headerContent='Glucose'/>
-               <ContentItem content={elementReports}/>
-            </>)
-        }
-        else if (activeState.id === 'Chat') {
-            return
-        }
     }
     const content = renderContent();
+
     return (
         <>
             {content}

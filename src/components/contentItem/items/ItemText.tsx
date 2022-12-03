@@ -1,11 +1,10 @@
 import { getStyle } from "../support/supportStyle";
-
 export const ItemText = (props:any) => {
     const { text, mark } = props.content;
     const stylesText = props.stylesText;
     const currentStyleText = getStyle(stylesText, mark.text);
     const styleBetween = getStyle(stylesText, mark.space);
-
+    
     return (
         text.map((item: any) => {
             return (<dl className={styleBetween}>

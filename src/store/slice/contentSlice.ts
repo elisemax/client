@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, AnyAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { useHttp } from "../../hooks/http.hook";
 import { ContentState } from "../../types/content";
 const initialState: ContentState = {
@@ -9,9 +9,9 @@ const initialState: ContentState = {
 export const fetchContent = createAsyncThunk(
     'content/fetchContent',
     (filter:string) => {
-        console.log(filter)
         const { request } = useHttp();
-        const data = request(`http://34.118.48.240:8080/patient/${filter}/1`, 'GET', null)
+        const data = request(`http://192.168.0.108:8080/patient/jeson`, 'GET', null);
+        console.log(data);
         return data;
     }
 )
@@ -23,7 +23,7 @@ const contentSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(fetchContent.pending, (state) => { state.loading = true; })
-        builder.addCase(fetchContent.fulfilled, (state, { payload }) => { state.content = payload.content; state.loading = false; })
+        builder.addCase(fetchContent.fulfilled, (state, { payload }) => { state.content = payload; state.loading = false; })
         builder.addCase(fetchContent.rejected, (state) => { state.error = 'Error'; state.loading = false; })
         builder.addDefaultCase((state) => { state.loading = false; })
     }

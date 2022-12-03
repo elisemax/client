@@ -12,8 +12,7 @@ import { fetchContent } from '../../store/slice/contentSlice';
 import { useTypeDispatch } from '../../hooks/useAppDispatch';
 import { Ifilter } from '../../types/filter';
 import { ContentHeader } from '../contentHeader/ContentHeader';
-import ContentItem from '../contentItem/ContentItem';
-import { ItemChart } from "../contentItem/items/ItemChart";
+import  ContentItem  from '../contentItem/contentItem';
 
 const Content = () => {
     const activeState = useTypeSelector(state => {
@@ -34,45 +33,17 @@ const Content = () => {
                 })
             }
         }
-        else{
-            console.log('useEffect else');
-        }
          // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activeState]);    
-
-    const elementsInsulin ={
-        title: 'Insulin',
-        headerContent: 'Prescription',
-        elem:[ { header:'Doctors exam',
-                            icon: infl,
-                            btn: false,
-                            border:true,
-                            mark:{header:'green',
-                                   text:'stone',
-                                   space:'spaceBetween'},
-                            text:[{textHeader:'Long insulin',textContent:'__UN'},
-                                {textHeader:'Short insulin',textContent:'__UN'},],
-                        },
-            {
-                header: 'Doctors exam',
-                icon: infl,
-                btn: true,
-                border: true,
-                mark: {
-                    header: 'green',
-                    text: 'stone',
-                    space: 'spaceBetween'
-                },
-                text: [{ textHeader: 'Long insulin', textContent: '__UN' },
-                { textHeader: 'Short insulin', textContent: '__UN' },],
-            }
-                    ]}
+    const testElem = useTypeSelector(state => state.content.content);
+    console.log(testElem);
+    
     const renderContent = () => {
-        if (activeState.id === elementsInsulin.title) {
+        if (activeState.id === testElem.title) {
             return (<>
-                <ContentHeader headerContent={elementsInsulin.headerContent}/>
-                {elementsInsulin.elem.map((item, index) => {
-                    return (<ContentItem key={index} content={item}/>)
+                <ContentHeader headerContent={testElem.headerContent}/>
+                {testElem.contents.map((item, index) => {
+                    return (<ContentItem key={index} content={item} create={testElem.create}/>)
                 })}
             </>)
         }

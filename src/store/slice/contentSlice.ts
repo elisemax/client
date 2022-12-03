@@ -2,7 +2,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { useHttp } from "../../hooks/http.hook";
 import { ContentState } from "../../types/content";
 const initialState: ContentState = {
-    content: [],
+    content: {
+        title: '',
+        headerContent: '',
+        create: '',
+        contents: []
+    },
     loading: false,
     error: null
 }
@@ -10,8 +15,7 @@ export const fetchContent = createAsyncThunk(
     'content/fetchContent',
     (filter:string) => {
         const { request } = useHttp();
-        const data = request(`http://192.168.0.108:8080/patient/jeson`, 'GET', null);
-        console.log(data);
+        const data = request(`http://192.168.0.108:8080/patient/${filter}/1`, 'GET', null);
         return data;
     }
 )

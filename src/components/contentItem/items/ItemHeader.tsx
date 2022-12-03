@@ -3,8 +3,7 @@ import { ItemButton } from "./ItemButton";
 
 
 export const ItemHeader = (props:any) => {
-    console.log(props.content.content)
-    const { header, mark , icon, btn } = props.content.content;
+    const { header, mark , icon, btn } = props.content;
     const stylesText = props.stylesText;
     const stylesHeader = props.stylesHeader;
     const currentStyleHeader = getStyle(stylesHeader, mark.header);

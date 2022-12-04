@@ -1,4 +1,4 @@
-import Content from '../content/Content';
+import Content from '../content/Content1';
 import MenuBot from '../menuBot/menuBot';
 import MenuTop from '../menuTop/menuTop';
 import AppBanner from '../appBanner/AppBanner';

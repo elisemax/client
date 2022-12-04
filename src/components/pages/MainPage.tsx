@@ -1,4 +1,4 @@
-import AppBanner from '../appBanner/AppBanner';
+import AppBanner from '../appBanner/AppBanner1';
 import { Link } from 'react-router-dom';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
 

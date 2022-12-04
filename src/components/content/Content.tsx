@@ -13,8 +13,8 @@ import { useTypeDispatch } from '../../hooks/useAppDispatch';
 import { Ifilter } from '../../types/filter';
 import { ContentHeader } from '../contentHeader/ContentHeader';
 import ContentItem from '../contentItem/ContentItem';
-
 const Content = () => {
+    const currentUser = useTypeSelector(state => state.userSlice.user);
     const activeState = useTypeSelector(state => {
         let activeState: Ifilter = { id: '',status: '',src: '', srcActive: ''};
         state.filter.filter.forEach((item) => {
@@ -29,7 +29,7 @@ const Content = () => {
         if (activeState.status) {
             if (activeState.endpoint) {
                 activeState.endpoint.forEach((item: any) => {
-                    dispatch(fetchContent(item));
+                     dispatch(fetchContent(item + '/' + currentUser));
                 })
             }
         }

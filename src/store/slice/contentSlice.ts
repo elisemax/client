@@ -15,7 +15,8 @@ export const fetchContent = createAsyncThunk(
     'content/fetchContent',
     (filter:string) => {
         const { request } = useHttp();
-        const data = request(`http://192.168.0.108:8080/patient/${filter}/1`, 'GET', null);
+        console.log('fetchContent',filter)
+        const data = request(`http://192.168.0.108:8080/patient/${filter}`, 'GET', null);
         return data;
     }
 )

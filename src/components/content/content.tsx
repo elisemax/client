@@ -12,7 +12,7 @@ import { fetchContent } from '../../store/slice/contentSlice';
 import { useTypeDispatch } from '../../hooks/useAppDispatch';
 import { Ifilter } from '../../types/filter';
 import { ContentHeader } from '../contentHeader/ContentHeader';
-import  ContentItem  from '../contentItem/contentItem';
+import ContentItem from '../contentItem/ContentItem';
 
 const Content = () => {
     const activeState = useTypeSelector(state => {

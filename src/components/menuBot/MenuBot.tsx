@@ -2,7 +2,7 @@ import { useTypeSelector } from '../../hooks/useTypeSelector';
 import { useDispatch } from 'react-redux';
 import { changeFilter } from '../../store/slice/filterSlice';
 
-export const MenuBot = () => {
+export const MenuBot = (props:any) => {
     const activeState = useTypeSelector(state => {
         let activeState: string = '';
         state.filter.filter.forEach((item) => {
@@ -13,7 +13,12 @@ export const MenuBot = () => {
         return activeState;
     });
     const dispatch = useDispatch();
-    const items = useTypeSelector(state => state.filter.filter.slice(0, 3));
+    let items = useTypeSelector(state => state.filter.filter.slice(0, 3));
+    const user = useTypeSelector(state => state.userSlice.user);
+    if ( user === 5) {
+        items = items.slice(0,1);
+    }
+        
     const renderItem = (items: any) => {
         const { src, srcActive, id } = items
         return (

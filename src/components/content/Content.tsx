@@ -14,7 +14,7 @@ import { Ifilter } from '../../types/filter';
 import { ContentHeader } from '../contentHeader/ContentHeader';
 import  ContentItem from '../contentItem/ContentItem';
 
-const Content = () => {
+const Content = (props:any) => {
     const currentUser = useTypeSelector(state => state.userSlice.user);
     const activeState = useTypeSelector(state => {
         let activeState: Ifilter = { id: '',status: '',src: '', srcActive: ''};

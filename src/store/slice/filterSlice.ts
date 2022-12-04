@@ -12,7 +12,9 @@ import today from '../../resource/iconsMenu/today.svg'
 import babyActive from '../../resource/iconsMenu/babyActive.svg'
 import reportsActive from '../../resource/iconsMenu/reportsActive.svg'
 import todayActive from '../../resource/iconsMenu/todayActive.svg'
-
+import woman from '../../resource/iconsMenu/woman.svg'
+import womanActive from '../../resource/iconsMenu/womanActive.svg'
+import man from '../../resource/iconsMenu/man.svg'
 import { filterState } from '../../types/filter';
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -23,7 +25,11 @@ const initialState: filterState = {
                 { id:'Doctors', src:doctors, srcActive:doctorsActive, status:'inactive', endpoint:['encounters']},
                 { id:'Insulin', src:insulin, srcActive:insulinActive, status:'inactive', endpoint:['insulin']},
                 { id:'Meds', src:medications, srcActive:medicationsActive, status:'inactive',endpoint:['meds']},
-                { id:'Devices', src:devices, srcActive:devicesActive, status:'inactive', endpoint:['devices']}],
+                { id:'Devices', src:devices, srcActive:devicesActive, status:'inactive', endpoint:['devices']},
+            {id:'Patient1',src:woman,srcActive:womanActive,status:'inactive',endpoint:['patient1']},
+        {id:'Patient2',src:woman,srcActive:womanActive,status:'inactive',endpoint:['patient2']},
+    {id:'Patient3',src:woman,srcActive:womanActive,status:'inactive',endpoint:['patient3']},
+{id:'Patient4',src:man,srcActive:womanActive,status:'inactive',endpoint:['patient4']}],
 }
 const filterSlice = createSlice({
     name:'filter',

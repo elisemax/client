@@ -26,10 +26,10 @@ const initialState: filterState = {
                 { id:'Insulin', src:insulin, srcActive:insulinActive, status:'inactive', endpoint:['insulin']},
                 { id:'Meds', src:medications, srcActive:medicationsActive, status:'inactive',endpoint:['meds']},
                 { id:'Devices', src:devices, srcActive:devicesActive, status:'inactive', endpoint:['devices']},
-            {id:'Patient1',src:woman,srcActive:womanActive,status:'inactive',endpoint:['patient1']},
-        {id:'Patient2',src:woman,srcActive:womanActive,status:'inactive',endpoint:['patient2']},
-    {id:'Patient3',src:woman,srcActive:womanActive,status:'inactive',endpoint:['patient3']},
-{id:'Patient4',src:man,srcActive:womanActive,status:'inactive',endpoint:['patient4']}],
+            {id:'Patient1',src:woman,srcActive:womanActive,status:'inactive',endpoint:['patient/1']},
+        {id:'Patient2',src:woman,srcActive:womanActive,status:'inactive',endpoint:['patient/2']},
+    {id:'Patient3',src:woman,srcActive:womanActive,status:'inactive',endpoint:['patient/3']},
+{id:'Patient4',src:man,srcActive:womanActive,status:'inactive',endpoint:['patient/4']}],
 }
 const filterSlice = createSlice({
     name:'filter',

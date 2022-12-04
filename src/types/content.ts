@@ -8,6 +8,7 @@ interface IContent {
     headerContent: string;
     create: string;
     contents:IElem[];
+    graph:any[];
 }
 interface IElem{
     header: string;

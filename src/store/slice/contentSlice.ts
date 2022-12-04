@@ -6,7 +6,8 @@ const initialState: ContentState = {
         title: '',
         headerContent: '',
         create: '',
-        contents: []
+        contents: [],
+        graph:[]
     },
     loading: false,
     error: null
@@ -15,7 +16,6 @@ export const fetchContent = createAsyncThunk(
     'content/fetchContent',
     (filter:string) => {
         const { request } = useHttp();
-        console.log('fetchContent',filter)
         const data = request(`http://34.118.67.221:8080/patient/${filter}`, 'GET', null);
         return data;
     }

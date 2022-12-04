@@ -25,8 +25,7 @@ const ContentItem = (props: any) => {
             stylesHeader={stylesHeader}
             onClick={onClick} show={show} />;
     }else if(props.create === 'Chart'){
-        console.log(props.create);
-        elem = <ItemChart/>;
+        elem = <ItemChart grap={props.graph[0]}/>;
     }else{
         return null
     }

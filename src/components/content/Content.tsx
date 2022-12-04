@@ -29,9 +29,14 @@ const Content = (props:any) => {
     useEffect(() => {
         if (activeState.status) {
             if (activeState.endpoint) {
+                if (currentUser===5) {
+                    activeState.endpoint.forEach((item:any) => {
+                          dispatch(fetchContent(item))})
+
+                }else{
                 activeState.endpoint.forEach((item: any) => {
                      dispatch(fetchContent(item + '/' + currentUser));
-                })
+                })}
             }
         }
          // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -43,7 +48,7 @@ const Content = (props:any) => {
             return (<>
                 <ContentHeader headerContent={testElem.headerContent}/>
                 {testElem.contents.map((item, index) => {
-                    return (<ContentItem key={index} content={item} create={testElem.create}/>)
+                    return (<ContentItem key={index} content={item} create={testElem.create} graph={testElem.graph}/>)
                 })}
             </>)
         }

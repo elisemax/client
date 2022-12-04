@@ -1,6 +1,6 @@
 import Content from '../content/Content';
-import MenuBot from '../menuBot/MenuBot';
-import MenuTop from '../menuTop/MenuTop';
+import MenuBot from '../menuBot/menuBot';
+import MenuTop from '../menuTop/menuTop';
 import AppBanner from '../appBanner/AppBanner';
 const DoctorPage = () => {
     return (

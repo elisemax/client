@@ -12,7 +12,7 @@ import { fetchContent } from '../../store/slice/contentSlice';
 import { useTypeDispatch } from '../../hooks/useAppDispatch';
 import { Ifilter } from '../../types/filter';
 import { ContentHeader } from '../contentHeader/ContentHeader';
-import ContentItem from '../contentItem/ContentItem';
+import ContentItem from '../contentItem/ContentItem1';
 const Content = () => {
     const currentUser = useTypeSelector(state => state.userSlice.user);
     const activeState = useTypeSelector(state => {

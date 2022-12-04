@@ -1,6 +1,7 @@
 import { ItemChart } from "./items/ItemChart";
 import { Item } from "./items/Item";
 import { useState } from "react";
+import { ItemJournal } from "./items/ItemJournal";
 const ContentItem = (props: any) => {
     const [show, setShow] = useState(false);
     const stylesText = {
@@ -26,10 +27,14 @@ const ContentItem = (props: any) => {
             onClick={onClick} show={show} />;
     }else if(props.create === 'Chart'){
         elem = <ItemChart grap={props.graph[0]}/>;
-    }else{
-        return null
+    }else if (props.create === 'Baby journal') {
+        elem = <ItemJournal
+            content={props.content}/>
     }
- 
+
+    if(props.title === 'Baby journal'){
+        elem = <ItemJournal content={props.content}/>
+    }
     return (<>{elem}</>)
 }
 

@@ -48,7 +48,7 @@ const Content = (props:any) => {
             return (<>
                 <ContentHeader headerContent={testElem.headerContent}/>
                 {testElem.contents.map((item, index) => {
-                    return (<ContentItem key={index} content={item} create={testElem.create} graph={testElem.graph}/>)
+                    return (<ContentItem key={index} content={item} create={testElem.create} graph={testElem.graph} title={testElem.title}/>)
                 })}
             </>)
         }

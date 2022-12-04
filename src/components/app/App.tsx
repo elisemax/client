@@ -1,16 +1,15 @@
-import Content from '../content/Content';
-import MenuBot from '../menuBot/MenuBot';
-import MenuTop from '../menuTop/MenuTop';
-import AppBanner from '../appBanner/AppBanner';
-
+import { MainPage, PatientPage } from '../pages';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 function App(){
-  return (<>
-    <AppBanner/>
-        <MenuTop/>
-          <Content/>
-        <MenuBot/>
-     </>
-  );
+  return (<Router>
+    <Routes>
+      <Route path="/" element={<MainPage/>}>
+     </Route>
+      <Route path='/patient'element={<PatientPage/>}>
+      </Route>
+    </Routes>
+  </Router>
+  );  
 }
 
 

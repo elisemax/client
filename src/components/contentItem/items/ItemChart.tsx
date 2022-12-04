@@ -14,12 +14,12 @@ export const ItemChart = (props: any) => {
                 }}
             >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
+                <XAxis dataKey="pointName" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="before meal" stroke="#8884d8" activeDot={{ r: 8 }} />
-                <Line type="monotone" dataKey="after meal" stroke="#82ca9d" />
+                <Line type="monotone" dataKey="before" stroke="#8884d8" activeDot={{ r: 8 }} />
+                <Line type="monotone" dataKey="after" stroke="#82ca9d" />
             </LineChart>
     </div>
     )

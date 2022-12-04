@@ -37,7 +37,6 @@ const Content = () => {
     }, [activeState]);    
     const testElem = useTypeSelector(state => state.content.content);
     console.log(testElem);
-    
     const renderContent = () => {
         if (activeState.id === testElem.title) {
             return (<>
